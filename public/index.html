@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./scripts/jquery.min.js"></script>
-    <script src="./scripts/bootstrap.min.js"></script>
-    <script src="/scripts/scripts.js" type="applicatoin/javascript"></script>
+    <link rel="stylesheet" href="./../css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../css/style.css" />
+    <script src="./../scripts/jquery.min.js"></script>
+    <script src="./../scripts/bootstrap.min.js"></script>
+    <script src="./../scripts/scripts.js" type="applicatoin/javascript"></script>
     <title>Home Page || Admin Module</title>
-
 </head>
 <body>
     <div class="jumbotron">
@@ -19,57 +18,34 @@
        </div>
     </div>
     <div class="container">
-            <div class="text-left margin-bottom-40">
-                <a href="/addcustomer.html" class="btn btn-lg btn-success">Add New Customer</a>
-            </div> 
-        <div class="customerTableWrap">
-            <div class="customerTable" style="display: none;">
-                <table class="table">
-                    <thead>
-                        <tr class="danger">
-                        <th>Customer Name</th>
-                        <th>Customer Email</th>
-                        <th>Customer Mobile</th>
-                        <th>Customer Address</th>
-                        <th>Customer Registered</th>
-                        <th>Customer Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody id="customerList">
-                    </tbody>
-                </table>
+           
+       
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="margin-top-40" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/customers" class="btn btn-lg btn-primary">Go to Customer Page</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/product/" class="btn btn-lg btn-primary">Go to Product Page</a>
+                        </div>
+                        <div class="col-md-6 margin-top-40">
+                            <a href="/orders/" class="btn btn-lg btn-primary">Go to Order Page</a>
+                        </div>
+                        <div class="col-md-6 margin-top-40">
+                            <a href="/queries/" class="btn btn-lg btn-primary">Go to Q&amp;A Page</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
     <div class="margin-top-40">
-            <div class="container">
-                <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
-            </div>
-         </div>
-    <script type="application/javascript">
-        $(window).on('load', function(){
-            // var htmlData = undefined;
-            $.ajax({
-                url: "http://localhost:3500/api/customers/all",
-                success: function(data){
-                    console.log(data);
-                    var htmlData = []
-                    for(var customer of data){
-                        let {customerName, customerEmail, customerMobile, customerAddress, customerEnrollement, customerId} = customer;
-                        htmlData.push( '<tr class="success"><td>'+ customerName + '</td> <td>' + customerEmail + '</td> <td>' + customerMobile + '</td> <td>' + customerAddress + '</td> <td>' + customerEnrollement + '</td> <td class="text-center"><a href="/editCutomer.html?customerId='+customerId+'" class="btn btn-info">Edit</a></td></tr>');
-                    }
-                    setTimeout(function(){ 
-                        var html = htmlData.join(',');
-                        $('#customerList').html(html);
-                        $('.customerTable').slideDown();
-                    }, 1000)
-                },
-                done: function(){
-                    console.log('Hi')
-                    // $('#customerList').html(htmlData.join(' '));
-                }
-            })
-        })
-    </script>
+        <div class="container">
+            <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+        </div>
+    </div>
 </body>
 </html>

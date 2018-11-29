@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../scripts/jquery.min.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../scripts/scripts.js" type="applicatoin/javascript"></script>
+    <title>Home Page || Admin Module</title>
+
+</head>
+<body>
+    <div class="jumbotron">
+       <div class="container">
+           <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
+       </div>
+    </div>
+    <div class="container">
+            <div class="text-left margin-bottom-40">
+                <a href="/product/product.html" class="btn btn-lg btn-success">Add New Product</a>
+            </div> 
+        <div>
+               <div class="loader">
+                    <div class="a" style="--n: 5;">
+                        <div class="dot" style="--i: 0;"></div>
+                        <div class="dot" style="--i: 1;"></div>
+                        <div class="dot" style="--i: 2;"></div>
+                        <div class="dot" style="--i: 3;"></div>
+                        <div class="dot" style="--i: 4;"></div>
+                    </div>
+               </div> 
+            <div class="customerTable" style="display: none;">
+                <table class="table">
+                    <thead>
+                        <tr class="danger">
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Product Avaiblity Loation</th>
+                        <th>Product Price</th>
+                        <th>Product Stocks</th>
+                        <th>Product Visiblity</th>
+                        <th>Edit Product</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerList" class="customerTableWrap">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="margin-top-40">
+            <div class="container">
+                <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+            </div>
+         </div>
+    <script type="application/javascript">
+        $(window).on('load', function(){
+            // var htmlData = undefined;
+            $.ajax({
+                url: "http://localhost:3500/api/products",
+                success: function(data){
+                    console.log(data);
+                    var htmlData = []
+                    for(var product of data){
+                        let {productId, productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = product;
+                        htmlData.push( '<tr class="success"><td>'+ productCode + '</td> <td>' + productName + '</td> <td>' + productAvaiblityLoation + '</td> <td>' + productPrice + '</td> <td>' + productStockNum + '</td><td>' + productVisiblity + '</td> <td class="text-center"><a href="/product/editProduct.html?productId='+productId+'" class="btn btn-info">Edit</a></td></tr>');
+                    }
+                    setTimeout(function(){ 
+                        var html = htmlData.join(',');
+                        $('#customerList').html(html);
+                        $('.loader').fadeOut('fast').next().fadeIn(1000);
+                    }, 1000)
+                },
+                done: function(){
+                    console.log('Hi')
+                    // $('#customerList').html(htmlData.join(' '));
+                }
+            })
+        })
+    </script>
+</body>
+</html>
