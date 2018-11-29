@@ -59,7 +59,7 @@
         $(window).on('load', function(){
             // var htmlData = undefined;
             $.ajax({
-                url: "http://localhost:3500/api/customers/all",
+                url: "/api/customers/all",
                 success: function(data){
                     console.log(data);
                     var htmlData = []
