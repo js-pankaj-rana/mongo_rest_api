@@ -20,16 +20,10 @@
        </div>
     </div>
     <div class="container">
-            <!-- 
-                customerName
-                customerMobile
-                customerEmail
-                customerAddress
-             -->
              <div class="row">
                  <div class="col-md-6 col-md-offset-3 col-sm-12 ">
 
-                        <form class="form-horizontal" onsubmit="javascript:editProductFormData(event)" name="editProductFormData">
+                        <form class="form-horizontal" onsubmit="javascript:addingFormData(event, 'product')" name="addProductForm">
                                 <div class="form-group">
                                   <label class="control-label col-sm-2 col-md-4" for="productCode">Product Code:</label>
                                   <div class="col-sm-10 col-md-8">
@@ -39,7 +33,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 col-md-4" for="productName">Product Name:</label>
                                     <div class="col-sm-10 col-md-8">
-                                        <input type="tel" class="form-control" id="productName" name="productName"   placeholder="Enter Customer Mobile Number" required>
+                                        <input type="tel" class="form-control" id="productName" name="productName"   placeholder="Enter Product Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">

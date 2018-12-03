@@ -21,8 +21,7 @@
     <div class="container">
         <div class="row">
                 <div class="col-md-6 col-md-offset-3 col-sm-12 ">
-
-            <form class="form-horizontal disabled" onsubmit="javascript:editCustomerSubmitForm(event)" name="editCustomerFormData">
+            <form class="form-horizontal disabled" onsubmit="javascript:editFormData(event, 'customer')" name="editCustomerFormData">
                 <div class="form-group">
                   <label class="control-label col-sm-2 col-md-4" for="customerName">Customer Name:</label>
                   <div class="col-sm-10 col-md-8">
@@ -56,51 +55,19 @@
             </form>
             <hr />
             <div class="text-center">
-                <a href="/" class="btn btn-primary">Go to customer list</a>
+                <a href="/customers/" class="btn btn-primary">Go to customer list</a>
             </div>
         </div>
         
     </div>
 </div>
 <div class="margin-top-40">
-        <div class="container">
-            <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
-        </div>
-     </div>
-
-<script type="text/javascript">
-  $(window).on('load', function(){
-      var url = new URL(window.location.href);
-      let [urlKey, urlValue] = url.search.substr(1, ).split('=');
-      console.log(urlKey, urlValue);
-
-      if(urlKey == undefined && urlKey != 'customerId'){
-          alert("wrong url query string passed, it should contains customer id");
-      }
-      else {
-          $.ajax({
-            url: "/api/customer?customerId="+urlValue,
-            success: function(data){
-                let cform = document.editCustomerFormData;
-                let {customerAddress, customerName, customerMobile, customerEmail} = data;
-                    cform.customerName.value = customerName; 
-                    cform.customerMobile.value = customerMobile; 
-                    cform.customerEmail.value = customerEmail; 
-                    cform.customerAddress.value = customerAddress; 
-                $('input, textarea').removeAttr('disabled');    
-            },
-            error: function(err){
-                console.log(err);
-            }
-          })
-      }
-
-      /* $.ajax({
-          url: '/api/customer?customerId'
-      }) */
-
-
-  })
+    <div class="container">
+        <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+    </div>
+</div>
+<script>
+    window.addEventListener('load', setFormData('customer'));
 </script>
 </body>
 </html>

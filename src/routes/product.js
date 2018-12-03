@@ -34,21 +34,9 @@ router.post('/product', (req, res) => {
 
 // GET
 router.get('/product', (req, res) => {
-  if(!req.query.productCode || !req.query.productId ) {
+  if(!req.query.productId ) {
     return res.status(400).send('Missing URL parameter: productCode or productId')
   }
-
-  if(req.query.productCode) {
-      Product.findOne({
-        productCode: req.query.productCode
-      })
-        .then(doc => {
-          res.json(doc)
-        })
-        .catch(err => {
-          res.status(500).json(err)
-        })
-    }
   else {
     Product.findOne({
       productId: req.query.productId
@@ -77,12 +65,12 @@ router.get('/products', (req, res) => {
   
 // UPDATE
 router.put('/product', (req, res) => {
-  if(!req.query.productCode) {
-    return res.status(400).send('Missing URL parameter: productCode')
+  if(!req.query.productId) {
+    return res.status(400).send('Missing URL parameter: productId')
   }
 
   Product.findOneAndUpdate({
-    productCode: req.query.productCode
+    productCode: req.query.productId
   }, req.body, {
     new: true
   })
@@ -96,12 +84,12 @@ router.put('/product', (req, res) => {
 
 // DELETE
 router.delete('/product', (req, res) => {
-  if(!req.query.productCode) {
-    return res.status(400).send('Missing URL parameter: productCode')
+  if(!req.query.productId) {
+    return res.status(400).send('Missing URL parameter: productId')
   }
 
   Product.findOneAndRemove({
-    productCode: req.query.productCode
+    productId: req.query.productId
   })
     .then(doc => {
       res.json(doc)

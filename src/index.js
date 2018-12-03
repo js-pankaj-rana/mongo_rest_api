@@ -3,6 +3,7 @@ const app = express();
 
 const personRoute = require('./routes/person');
 const customerRoute = require('./routes/customer');
+const contactUsFormRoute = require('./routes/contactus');
 const customerContactUsRoute = require('./routes/customer.contactus');
 const product = require('./routes/product');
 const productDetail = require('./routes/productDetail');
@@ -54,6 +55,7 @@ app.use('/api', customerContactUsRoute);
 app.use('/api', personRoute);
 app.use('/api', productDetail);
 app.use('/api', product);
+app.use('/api', contactUsFormRoute);
 
 // app.use('/api', customerRoute);
 app.use(express.static('public'));

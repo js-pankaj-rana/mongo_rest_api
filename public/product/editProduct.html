@@ -21,8 +21,7 @@
     <div class="container">
         <div class="row">
                 <div class="col-md-6 col-md-offset-3 col-sm-12 ">
-
-            <form class="form-horizontal disabled" onsubmit="javascript:editCustomerSubmitForm(event)" name="editProductFormData">
+            <form class="form-horizontal disabled" onsubmit="javascript:editFormData(event, 'product')" name="editProductFormData">
                 <div class="form-group">
                   <label class="control-label col-sm-2 col-md-4" for="productCode">Product Code:</label>
                   <div class="col-sm-10 col-md-8">
@@ -87,7 +86,7 @@
             <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
         </div>
      </div>
-
+<!-- 
 <script type="text/javascript">
   $(window).on('load', function(){
       var url = new URL(window.location.href);
@@ -123,6 +122,9 @@
 
 
   })
+</script> -->
+<script>
+    window.addEventListener('load', setFormData('product'));
 </script>
 </body>
 </html>
