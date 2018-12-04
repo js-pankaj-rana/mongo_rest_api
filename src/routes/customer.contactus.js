@@ -13,10 +13,6 @@ router.post('/customercontacts', (req, res) => {
     // ...
   }
 
-  // let user = {
-  //   name: 'firstname lastname',
-  //   email: 'email@gmail.com'
-  // }
 
   const model = new CustomerContactUs(req.body)
   model.save()

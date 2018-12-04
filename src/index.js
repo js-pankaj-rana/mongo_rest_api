@@ -10,35 +10,24 @@ const productDetail = require('./routes/productDetail');
 
 
 const mongoose = require('mongoose');
-mongoose.connect(
-    'mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', 
-    {
-        server: {
-          socketOptions: {
-            socketTimeoutMS: 0,
-            keepAlive: true
-          },
-          reconnectTries: 30
-        },
-        replset: {
-          socketOptions: {
-            socketTimeoutMS: 0,
-            keepAlive: true
-          },
-          reconnectTries: 30
-        },
-        mongos: {
-          socketOptions: {
-            socketTimeoutMS: 0,
-            keepAlive: true
-          },
-          reconnectTries: 30
-        }
-      })
+
+// mongodb://<dbuser>:<dbpassword>@ds249092.mlab.com:49092/ranasteel
+
+mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
+  useNewUrlParser: true
+})
+
+
+      mongoose.connection.on('error', function(error) {
+        console.error('Database connection error:', error);
+      });
+      
+      mongoose.connection.once('open', function() {
+        console.log('Database connected');
+      });
 
 
 const path = require('path');
-
 const bodyParser = require('body-parser');
 
 
