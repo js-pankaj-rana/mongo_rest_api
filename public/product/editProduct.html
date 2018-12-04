@@ -86,43 +86,6 @@
             <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
         </div>
      </div>
-<!-- 
-<script type="text/javascript">
-  $(window).on('load', function(){
-      var url = new URL(window.location.href);
-      let [urlKey, urlValue] = url.search.substr(1, ).split('=');
-      console.log(urlKey, urlValue);
-
-      if(urlKey == undefined && urlKey != 'productId'){
-          alert("wrong url query string passed, it should contains customer id");
-      }
-      else {
-          $.ajax({
-            url: "/api/product?productId="+urlValue,
-            success: function(data){
-                let cform = document.editProductFormData;
-                let {productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = data;
-                    cform.productVisiblity.value = productVisiblity; 
-                    cform.productAvaiblityLoation.value = productAvaiblityLoation; 
-                    cform.productCode.value = productCode; 
-                    cform.productPrice.value = productPrice; 
-                    cform.productStockNum.value = productStockNum; 
-                    cform.productName.value = productName; 
-                $('input, select').removeAttr('disabled');    
-            },
-            error: function(err){
-                console.log(err);
-            }
-          })
-      }
-
-      /* $.ajax({
-          url: '/api/customer?productId'
-      }) */
-
-
-  })
-</script> -->
 <script>
     window.addEventListener('load', setFormData('product'));
 </script>

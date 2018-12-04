@@ -58,7 +58,22 @@ function addingFormData(event, formType){
             console.log(formData);
             }
             
-
+            if(formType == "contactus"){
+                cForm =  document.editContactUsFormData;
+                let contactUserName = cForm.contactUserName.value,
+                contactUserEmail =  cForm.contactUserEmail.value, 
+                contactUserMessage = cForm.contactUserMessage.value,
+            
+                formData = {
+                        "contactUserName": contactUserName,
+                        "contactUserEmail": contactUserEmail,
+                        "contactUserMessage": contactUserMessage
+                    };
+                    url = '/api/contactus';
+                    console.log(formData);
+                    }
+                    
+    
 
             if(formData != undefined && url != undefined){
                 $.ajax({
@@ -100,28 +115,14 @@ function editFormData(event, formType){
         customerEmail = cForm.customerEmail.value,
         customerAddress = cForm.customerAddress.value; 
 
-            if(customerName === undefined) {
-                console.error("customer name is not defined");
-                return false;
-            }
-            else if(customerMobile === undefined) {
-                console.error("customer mobile is not defined");
-                return false;
-            }
-            else if(customerAddress === undefined) {
-                console.error("customer address is not defined");
-                return false;
-            }
-            else {
-                formData = {
-                        "customerName": customerName,
-                        "customerMobile": customerMobile,
-                        "customerEmail": customerEmail,
-                        "customerAddress":customerAddress
-                    };
-                apiUrl = '/api/customer?customerId='+urlValue;
-                urlRedirection = '/customers'
-            }
+        formData = {
+                "customerName": customerName,
+                "customerMobile": customerMobile,
+                "customerEmail": customerEmail,
+                "customerAddress":customerAddress
+            };
+            apiUrl = '/api/customer?customerId='+urlValue;
+            urlRedirection = '/customers'
         }
 
         if(formType == 'product'){
@@ -144,6 +145,21 @@ function editFormData(event, formType){
             urlRedirection = '/product'
         }
 
+        if(formType == 'contactus'){
+            const cForm =  document.editContactUsFormData;
+            let contactUserName = cForm.contactUserName.value,
+            contactUserEmail =  cForm.contactUserEmail.value, 
+            contactUserMessage = cForm.contactUserMessage.value; 
+            formData = {
+                "contactUserName": contactUserName,
+                "contactUserEmail": contactUserEmail,
+                "contactUserMessage":contactUserMessage,
+            };
+            apiUrl = '/api/contactus?contactFormId='+urlValue;
+            urlRedirection = '/contactus/'
+        }
+
+
     $.ajax({
         type: 'PUT',
         url: apiUrl,
@@ -162,16 +178,6 @@ function editFormData(event, formType){
         }
     })
 }
-
-
-/* $(window).on('load', function(){
-    if(urlKey == undefined && urlKey != 'customerId'){
-        alert("wrong url query string passed, it should contains customer id");
-    }
-}) */
-
-    
-
 
     function setFormData(formType){
         let url = new URL(window.location.href);
@@ -215,5 +221,23 @@ function editFormData(event, formType){
                 }
             })
         }
+
+        if(formType == 'contactus') {
+            $.ajax({
+                url: "/api/contactus?contactFormId="+urlValue,
+                success: function(data){
+                    let cform = document.editContactUsFormData;
+                    let {contactUserName, contactUserEmail, contactUserMessage} = data;
+                    cform.contactUserEmail.value = contactUserEmail; 
+                    cform.contactUserMessage.value = contactUserMessage; 
+                    cform.contactUserName.value = contactUserName; 
+                    $('input, textarea').removeAttr('disabled');   
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            })
+        }
+
         
     }

@@ -90,6 +90,10 @@ tbody td, thead th {
  .tableProduct tbody td, .tableProduct thead th {
     width: 20%;
 }
+.customerTable tbody td, .customerTable thead th {
+    width: 20%;
+}
+
 
 .tableProduct tbody td:nth-child(4), .tableProduct thead th:nth-child(4),
 .tableProduct tbody td:first-child, .tableProduct thead th:first-child, .tableProduct tbody td:nth-last-child(3), .tableProduct thead th:nth-last-child(3),
