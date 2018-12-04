@@ -1,6 +1,22 @@
 const ContactUsForm = require('../models/contactus.model')
 const express = require('express')
 const router = express.Router()
+// const cors = require('cors')
+
+// const projectURLs = ['https://www.ranasteelco.com', 'https://www.ranasteelco.in']
+// const projectURLs = ['http://localhost:3000', 'http://localhost:3000.in']
+
+/* var corsOptions = {
+  origin: function (origin, callback) {
+    if (projectURLs.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+} */
+
+
 
 // Create a new customer
 // POST localhost:3000/customer
@@ -8,15 +24,6 @@ router.post('/contactus', (req, res) => {
   if(!req.body) {
     return res.status(400).send('Request body is missing')
   }
-
-  if(!req.body.contactUserEmail) {
-    // ...
-  }
-
-  // let user = {
-  //   name: 'firstname lastname',
-  //   email: 'email@gmail.com'
-  // }
 
   const model = new ContactUsForm(req.body)
   model.save()

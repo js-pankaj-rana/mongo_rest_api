@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js --watch",
+    "start": "node src/index.js",
     "start-dev": "nodemon src/index.js"
   },
   "author": "Pankaj Rana",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.3.13",
     "uuid": "^3.3.2"
