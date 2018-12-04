@@ -11,11 +11,14 @@ const productDetail = require('./routes/productDetail');
 
 const mongoose = require('mongoose');
 
-// mongodb://<dbuser>:<dbpassword>@ds249092.mlab.com:49092/ranasteel
 
-mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
+mongoose.connect('mongodb://brnstuser_1:ndawksalt$123#@ds155492.mlab.com:55492/bnralmirahs', {
   useNewUrlParser: true
 })
+
+
+
+
 
 
       mongoose.connection.on('error', function(error) {
