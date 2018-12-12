@@ -6,49 +6,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link rel="stylesheet" href="./../css/style.css" />
-    <script src="./../scripts/jquery.min.js"></script>
-    <script src="./../scripts/bootstrap.min.js"></script>
-    <script src="./../scripts/scripts.js" type="applicatoin/javascript"></script>
+    <script src="./scripts/jquery.min.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+    <script src="./scripts/scripts.js" type="applicatoin/javascript"></script>
     <title>Home Page || Admin Module</title>
 </head>
+
 <body>
     <div class="jumbotron">
-       <div class="container">
-           <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
-       </div>
+        <div class="container">
+             <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
+        </div>
     </div>
     <div class="container">
-           
-       
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="margin-top-40" >
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="/customers" class="btn btn-lg btn-primary">Go to Customer Page</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="/product/" class="btn btn-lg btn-primary">Go to Product Page</a>
-                        </div>
-                        <div class="col-md-6 margin-top-40">
-                            <a href="/orders/" class="btn btn-lg btn-primary">Go to Order Page</a>
-                        </div>
-                        <div class="col-md-6 margin-top-40">
-                            <a href="/queries/" class="btn btn-lg btn-primary">Go to Q&amp;A Page</a>
-                        </div>
-                        <div class="col-md-6 margin-top-40">
-                            <a href="/contactus/" class="btn btn-lg btn-primary">Go to Contact US Page</a>
-                        </div>
+                <form name="adminFormLogin" onsubmit="javascript:void(0)" data-formtype="signin">
+                    <h1>Login</h1>
+                    <p>All fields are required.</p>
+                    <hr>
+                    <div class="form-group">
+                        <label for="userAdminId">User ID</label>
+                        <input type="userid" class="form-control" id="userAdminId" name="userAdminId" aria-describedby="emailHelp"
+                            placeholder="User ID" required>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">User Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" name="exampleInputPassword1"
+                            placeholder="Password" required>
+                        <p id="passText"></p>
+                    </div>
+                    <div class="form-check">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button class="btn btn-info" type="button" name="showpassword" id="showpassword">Show Password</button>
+                    </div>
+                    <hr/>
+                    <div class="form-check">
+                        <a href="javascript:void(0)" class="btn btn-primary" id="siLogin">Go to Sign Up Window</a>
+                    </div>    
+                </form>
+
+                <form onsubmit="javascript:void(0)" name="adminFormSignUp" style="display:none;" data-formtype="signup">
+                        <h1>Sign Up</h1>
+                        <p>Please fill in this form to create an account.<br/> All fields are required.</p>
+                        <hr>
+                        <div class="form-group">
+                            <label for="sUuserAdminId">User ID</label>
+                            <input type="text" class="form-control" id="sUuserAdminId" name="sUuserAdminId" aria-describedby="userId"
+                                placeholder="Enter User ID" onblur="checkAvailable(this)" required>
+                            <p class="text-success text-bold" style="display: none;" id="successPara"><strong>Available, User id is avaiable</strong></p>    
+                            <p class="text-danger text-bold" style="display: none;" id="errorPara"><strong>Entered user id is not avaiable</strong></p>    
+                        </div>
+                        <div class="form-group">
+                            <label for="sUuserAdminName">User Name</label>
+                            <input type="userid" class="form-control" id="sUuserAdminName" name="sUuserAdminName" aria-describedby="userName"
+                                placeholder="Enter Admin User Name" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="sUuserAdminPassword">User Password</label>
+                            <input type="password" class="form-control" name="password" id="sUuserAdminPassword"
+                                placeholder="Password" required>
+                            <p id="passText"></p>
+                        </div>
+                        
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary" onclick="javascript:document.signUpForm.reset()">Reset</button>
+                           
+                        </div>
+                        <hr/>
+                        <div class="form-check">
+                            <a href="javascript:void(0)" class="btn btn-primary" id="suLogin">Go to Login Window</a>
+                        </div> 
+                    </form>
             </div>
         </div>
+    </div>
 
     </div>
     <div class="margin-top-40">
         <div class="container">
-            <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+            <!-- <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p> -->
         </div>
     </div>
+
+    <script type="text/javascript">
+     window.addEventListener('load', function(){
+
+        var tokenkey = sessionStorage.getItem('tokenkey'); 
+                    if(tokenkey){
+                        window.location.href= "/controller"
+                    }   
+
+        var cformSignIn = document.adminFormLogin;
+        var cformSignUP = document.adminFormSignUp;
+
+        (cformSignIn.showpassword).addEventListener('click', () => {
+            document.getElementById('passText').innerText = cformSignIn.password.value;
+            setTimeout(function () {
+                document.getElementById('passText').innerText = '';
+            }, 400)
+
+        })
+
+        document.getElementById('siLogin').addEventListener('click', function(){
+            console.log(cformSignIn);
+            cformSignUP.style.display = "block";
+            cformSignIn.style.display = "none";
+        })
+        
+        document.getElementById('suLogin').addEventListener('click', function(){
+            cformSignIn.style.display = "block";
+            cformSignUP.style.display = "none";
+        })
+
+        
+        $('button:submit').on('click', function(e){
+            e.preventDefault();
+            
+           var type = $(this).parents('form').data("formtype"),
+                fromName,
+                reqUrl,
+                reqType,
+                formData,
+                contentType;
+
+           
+            if(type == "signin"){
+                fromName = cformSignIn;
+                var adminUserId = fromName.userAdminId.value,
+                    adminUserPassword = fromName.exampleInputPassword1.value;
+                formData = {
+                    adminUserId,
+                    adminUserPassword
+                };
+
+                reqUrl = `/api/adminuser?adminUserId=${adminUserId}&adminUserPassword=${adminUserPassword}`,
+                reqType = 'GET' 
+            }
+            
+            if(type == "signup"){
+                fromName = cformSignUP;
+                formData = {
+                    adminUserId: fromName.sUuserAdminId.value,
+                    adminUserName: fromName.sUuserAdminName.value,
+                    adminUserPassword: fromName.password.value
+                }; 
+                reqUrl = "/api/adminuser";
+                reqType = 'POST';
+                contentType = "application/json";
+                
+            }
+            console.log(formData);
+             $.ajax({
+                data: JSON.stringify(formData),
+                url: reqUrl,
+                type: reqType,
+                contentType,
+                success: function(resdata, status){
+                    if(type=="signup"){
+                        alert("Record save successfully !");
+                        window.location.href = "./"; 
+                    }
+                    if(type=="signin"){
+                       sessionStorage.setItem('tokenkey', resdata.token); 
+                       window.location.href= "/controller"
+                    }
+                },
+                error: function(err){
+                    if(type=="signin"){
+                        alert("User id and Password is not matched with db");
+                        window.location.href = '/';
+                    }
+                    console.log(err);
+                } 
+            })
+        })
+     })   
+
+     function checkAvailable(obj){
+
+        var userId = $(obj).val(),
+        errorPara = document.getElementById('errorPara'),
+        successPara = document.getElementById('successPara');
+        
+        if(userId){
+            $.ajax({
+                url: `/api/adminuserid?adminUserId=${userId}`,
+                success: function(data){
+                    var {available} = data
+                      if(available == "yes"){
+                        successPara.style.display = "block";
+                        errorPara.style.display = "none";
+                      }
+                      else{
+                        errorPara.style.display = "block";
+                        successPara.style.display = "none";
+                    }  
+                },
+                error: function(err){
+                    console.log(err);
+                } 
+            })
+        }
+        
+     }
+    </script>
 </body>
+
 </html>

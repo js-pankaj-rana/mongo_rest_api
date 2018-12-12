@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../scripts/jquery.min.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../scripts/scripts.js" type="text/javascript"></script>
+    <title>Edit Product Description</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-12 ">
+                <form class="form-horizontal disabled" onsubmit="javascript:editFormData(event, 'productdesc')" name="editProductDescFormData">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="productDesCode">Product Code:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="productDesCode" name="productDesCode"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="numberDoor">Number Door:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="numberDoor" name="numberDoor"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="numberOfShelves">Number of Shelves:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="number" disabled="disabled" class="form-control" id="numberOfShelves" name="numberOfShelves"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="needForThis">Need for this:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="needForThis" name="needForThis"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="itemCondition">Item Condition:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="itemCondition" name="itemCondition"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="dimensions">Product dimensions:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="dimensions" name="dimensions"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="color">Color:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="color" name="color"
+                                 required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="mirror">Front Mirror:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="mirror" name="mirror"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="numberOfSecretLocker">Number Of Secret Locker:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="number" disabled="disabled" class="form-control" id="numberOfSecretLocker" name="numberOfSecretLocker"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="brand">Product Brand:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="brand" name="brand"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="productDtlWarrrenty">Product Warrrenty:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <textarea disabled="disabled" class="form-control" id="productDtlWarrrenty" name="productDtlWarrrenty"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="productDtlDelivery">Product Delivery:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="productDtlDelivery" name="productDtlDelivery"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="modeofPayment">Mode of Payment:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="modeofPayment" name="modeofPayment"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-4" for="prodcutMsg">Prodcut Msg:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <input type="text" disabled="disabled" class="form-control" id="prodcutMsg" name="prodcutMsg"
+                                 required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 text-right">
+                            <button type="submit" class="btn btn-primary">Update Product Description</button>
+                            <button class="btn btn-danger" onclick="javascript:window.location.href = '/productdetaildescs'">Cancel</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <hr />
+                <div class="text-center">
+                    <a href="/productdetaildescs" class="btn btn-primary">Go to Product Description List</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="margin-top-40">
+        <div class="container">
+            <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', setFormData('productDesc'));
+    </script>
+</body>
+
+</html>

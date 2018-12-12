@@ -40,7 +40,6 @@
                         <th>Customer Email</th>
                         <th>Customer Mobile</th>
                         <th>Customer Address</th>
-                        <th>Customer Registered</th>
                         <th>Customer Edit</th>
                         </tr>
                     </thead>
@@ -60,12 +59,16 @@
             // var htmlData = undefined;
             $.ajax({
                 url: "/api/customers/all",
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type':'application/json'
+                },
                 success: function(data){
                     console.log(data);
                     var htmlData = []
                     for(var customer of data){
                         let {customerName, customerEmail, customerMobile, customerAddress, customerEnrollement, customerId} = customer;
-                        htmlData.push( '<tr class="success"><td>'+ customerName + '</td> <td>' + customerEmail + '</td> <td>' + customerMobile + '</td> <td>' + customerAddress + '</td> <td>' + customerEnrollement + '</td> <td class="text-center"><a href="/customers/editCutomer.html?customerId='+customerId+'" class="btn btn-info">Edit</a></td></tr>');
+                        htmlData.push( '<tr class="success"><td>'+ customerName + '</td> <td>' + customerEmail + '</td> <td>' + customerMobile + '</td> <td>' + customerAddress + '</td> <td class="text-center"><a href="/customers/editCutomer.html?customerId='+customerId+'" class="btn btn-info">Edit</a></td></tr>');
                     }
                     setTimeout(function(){ 
                         var html = htmlData.join(',');

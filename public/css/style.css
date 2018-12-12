@@ -101,3 +101,16 @@ tbody td, thead th {
  .tableProduct tbody td:last-child, .tableProduct thead th:last-child {
     width: 11.5%;
 }
+
+.tableProductDesc table tr th, .tableProductDesc table tr td {
+    width: 19%;
+}
+
+.tableProductDesc table tr th:nth-child(3), .tableProductDesc table tr td:nth-child(3), .tableProductDesc table tr th:nth-child(4), .tableProductDesc table tr td:nth-child(4) {
+    width: 11%; 
+}
+
+.tableProductDesc table tr th:nth-child(2), .tableProductDesc table tr td:nth-child(2),.tableProductDesc table tr th:last-child, .tableProductDesc table tr td:last-child {
+    width: 9%;
+}
+

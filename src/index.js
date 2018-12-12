@@ -7,6 +7,9 @@ const contactUsFormRoute = require('./routes/contactus');
 const customerContactUsRoute = require('./routes/customer.contactus');
 const product = require('./routes/product');
 const productDetail = require('./routes/productDetail');
+const productDescription = require('./routes/productDescription');
+
+const adminModel = require('./routes/admin');
 
 
 const mongoose = require('mongoose');
@@ -14,7 +17,8 @@ const mongoose = require('mongoose');
 // mongodb://<dbuser>:<dbpassword>@ds249092.mlab.com:49092/ranasteel
 
 mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
-   useNewUrlParser: true
+   useNewUrlParser: true,
+   keepAlive: true
 })
 
       mongoose.connection.on('error', function(error) {
@@ -55,6 +59,8 @@ app.use('/api', personRoute);
 app.use('/api', productDetail);
 app.use('/api', product);
 app.use('/api', contactUsFormRoute);
+app.use('/api', adminModel);
+app.use('/api', productDescription);
 
 // app.use('/api', customerRoute);
 app.use(express.static('public'));
@@ -62,7 +68,7 @@ app.use(express.static('public'));
 //Handler for 404 - Page not found
 
 app.use( (req, res, next) => {
-    res.status(404).send("we lost you")
+    res.sendStatus(404).send("we lost you")
 });
 
 //Handler for 500 - Internal server error 

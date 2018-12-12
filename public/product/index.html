@@ -61,6 +61,10 @@
             // var htmlData = undefined;
             $.ajax({
                 url: "/api/products",
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type':'application/json'
+                },
                 success: function(data){
                     console.log(data);
                     var htmlData = []

@@ -27,9 +27,6 @@ const ProductDetailSchema = new mongoose.Schema({
     },
     productDtlDiscriptionMsg: {
         type: Array
-    },
-    productDtlDiscription: {
-        type: Object
     }
 })
 
