@@ -14,8 +14,8 @@ const adminModel = require('./routes/admin');
 
 const mongoose = require('mongoose');
 
-const dbuser = PROCESS.env.dbusername;
-const dbuserpwd = PROCESS.env.dbuserpwd;
+const dbuser = process.env.dbusername;
+const dbuserpwd = process.env.dbuserpwd;
 
 console.log("dbuser",dbuser, "dbuserpwd",dbuserpwd)
 if(process.env != 'production'){
