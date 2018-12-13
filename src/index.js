@@ -14,12 +14,24 @@ const adminModel = require('./routes/admin');
 
 const mongoose = require('mongoose');
 
-// mongodb://<dbuser>:<dbpassword>@ds249092.mlab.com:49092/ranasteel
+const dbuser = PROCESS.env.dbusername;
+const dbuserpwd = PROCESS.env.dbuserpwd;
 
-mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
+console.log("dbuser",dbuser, "dbuserpwd",dbuserpwd)
+if(process.env != 'production'){
+  /* mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
+    useNewUrlParser: true,
+    keepAlive: true
+ }) */
+}
+else {
+  mongoose.connect(`mongodb://${dbuser}:${dbuserpwd}@ds249092.mlab.com:49092/ranasteel`, {
    useNewUrlParser: true,
    keepAlive: true
-})
+  })
+}
+
+
 
       mongoose.connection.on('error', function(error) {
         console.error('Database connection error:', error);
