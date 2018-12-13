@@ -96,7 +96,7 @@
      window.addEventListener('load', function(){
 
         var tokenkey = sessionStorage.getItem('tokenkey'); 
-                    if(tokenkey){
+                    if(tokenkey != undefined){
                         window.location.href= "/controller"
                     }   
 

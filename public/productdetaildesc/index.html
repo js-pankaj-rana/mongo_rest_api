@@ -9,40 +9,39 @@
     <script src="../scripts/jquery.min.js"></script>
     <script src="../scripts/bootstrap.min.js"></script>
     <script src="../scripts/scripts.js" type="applicatoin/javascript"></script>
-    <title>Product Details Page || Admin Module </title>
-
+    <title>Product Description Page || Admin Module </title>
 </head>
 <body>
     <div class="jumbotron">
-       <div class="container">
-           <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
-       </div>
+        <div class="container">
+            <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
+        </div>
     </div>
     <div class="container">
-            <div class="text-left margin-bottom-40">
-                <a href="/productdetaildesc/addproduct.html" class="btn btn-lg btn-success">Add Product Description</a>
-            </div> 
+        <div class="text-left margin-bottom-40">
+            <a href="/productdetaildesc/addproduct.html" class="btn btn-lg btn-success">Add Product Description</a>
+        </div>
         <div>
-               <div class="loader">
-                    <div class="a" style="--n: 5;">
-                        <div class="dot" style="--i: 0;"></div>
-                        <div class="dot" style="--i: 1;"></div>
-                        <div class="dot" style="--i: 2;"></div>
-                        <div class="dot" style="--i: 3;"></div>
-                        <div class="dot" style="--i: 4;"></div>
-                    </div>
-               </div> 
+            <div class="loader">
+                <div class="a" style="--n: 5;">
+                    <div class="dot" style="--i: 0;"></div>
+                    <div class="dot" style="--i: 1;"></div>
+                    <div class="dot" style="--i: 2;"></div>
+                    <div class="dot" style="--i: 3;"></div>
+                    <div class="dot" style="--i: 4;"></div>
+                </div>
+            </div>
             <div class="tableProductDesc" style="display: none;">
                 <table class="table">
                     <thead>
                         <tr class="danger">
-                        <th>Product Code</th>
-                        <th>No. Door</th>
-                        <th>No. Of Shelves</th>
-                        <th>Need For This</th>
-                        <th>Condition</th>
-                        <th>Product Dimensions</th>
-                        <th>Edit</th>
+                            <th>Product Code</th>
+                            <th>No. Door</th>
+                            <th>No. Of Shelves</th>
+                            <th>Need For This</th>
+                            <th>Condition</th>
+                            <th>Product Dimensions</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody id="productDescriptionDtl" class="productDescriptionDetails">
@@ -52,37 +51,51 @@
         </div>
     </div>
     <div class="margin-top-40">
-            <div class="container">
-                <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
-            </div>
-         </div>
+        <div class="container">
+            <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+        </div>
+    </div>
     <script type="application/javascript">
-        $(window).on('load', function(){
+        $(window).on('load', function () {
             // var htmlData = undefined;
             $.ajax({
                 url: "/api/productdetaildescs",
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/json'
                 },
-                success: function(data){
+                success: function (data) {
                     console.log(data);
                     var htmlData = []
-                    for(var product of data){
-                        let {productDesId, productDesCode, numberDoor, numberOfShelves, needForThis, itemCondition, dimensions} = product;
-                        htmlData.push( '<tr class="success"><td>'+ productDesCode + '</td> <td>' +numberDoor + '</td> <td>' +  numberOfShelves + '</td> <td>' + needForThis + '</td> <td>' + itemCondition + '</td><td>' +  dimensions + '</td> <td class="text-center"><a href="/productdetaildesc/editProduct.html?productDesId='+productDesId+'" class="btn btn-info">Edit</a></td></tr>');
+                    for (var product of data) {
+                        let {
+                            productDesId,
+                            productDesCode,
+                            numberDoor,
+                            numberOfShelves,
+                            needForThis,
+                            itemCondition,
+                            dimensions
+                        } = product;
+                        htmlData.push('<tr class="success"><td>' + productDesCode + '</td> <td>' +
+                            numberDoor + '</td> <td>' + numberOfShelves + '</td> <td>' +
+                            needForThis + '</td> <td>' + itemCondition + '</td><td>' +
+                            dimensions +
+                            '</td> <td class="text-center"><a href="/productdetaildesc/editProduct.html?productDesId=' +
+                            productDesId + '" class="btn btn-info">Edit</a></td></tr>');
                     }
-                    setTimeout(function(){ 
+                    setTimeout(function () {
                         var html = htmlData.join(',');
                         $('#productDescriptionDtl').html(html);
                         $('.loader').fadeOut('fast').next().fadeIn(1000);
                     }, 1000)
                 },
-                done: function(){
+                done: function () {
                     console.log("request done");
                 }
             })
         })
     </script>
 </body>
+
 </html>

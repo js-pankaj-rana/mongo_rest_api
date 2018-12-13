@@ -58,7 +58,7 @@ router.get('/adminuser', (req, res) => {
       console.log(doc);
         if(doc){
           const {adminUserName, adminUserId, adminUserIsAuthorised} = doc;
-          if(!adminUserIsAuthorised){
+          if(adminUserIsAuthorised){
             jwt.sign({user: doc}, secretkey, { expiresIn: '1h' }, (err, token) => {
               res.json({
                       token,
