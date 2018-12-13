@@ -32,7 +32,7 @@ router.post('/productdetaildesc', verifyToken, (req, res) => {
 })
 
 // GET
-router.get('/productdetaildesc', verifyToken, (req, res) => {
+router.get('/productdetaildesc', (req, res) => {
   if(!req.query.productDesId ) {
     return res.status(400).send('Missing URL parameter: productDesId')
   }
@@ -51,11 +51,8 @@ router.get('/productdetaildesc', verifyToken, (req, res) => {
 
 
 // GET ALL
-router.get('/productdetaildescs', verifyToken, (req, res) => {
-  jwt.verify(req.token, secretkey, (err, authData) => {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+router.get('/productdetaildescs', (req, res) => {
+  
         ProductDescription.find()
         .then(doc => {
           res.json(doc)
@@ -63,8 +60,6 @@ router.get('/productdetaildescs', verifyToken, (req, res) => {
         .catch(err => {
           res.status(500).json(err)
         })
-    }
-  })
 })
 
   
