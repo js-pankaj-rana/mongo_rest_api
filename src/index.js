@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express(); 
+const app = express();
 
 const personRoute = require('./routes/person');
 const customerRoute = require('./routes/customer');
@@ -10,36 +10,25 @@ const productDetail = require('./routes/productDetail');
 const productDescription = require('./routes/productDescription');
 
 const adminModel = require('./routes/admin');
-
+const {
+  dbusername,
+  dbuserpassword
+} = require('./key');
 
 const mongoose = require('mongoose');
 
-const dbuser = process.env.dbusername;
-const dbuserpwd = process.env.dbuserpwd;
+mongoose.connect(`mongodb://${dbusername}:${dbuserpassword}@ds249092.mlab.com:49092/ranasteel`, {
+  useNewUrlParser: true,
+  keepAlive: true
+})
 
-console.log("dbuser",dbuser, "dbuserpwd",dbuserpwd)
-if(process.env != 'production'){
-  /* mongoose.connect('mongodb://rnstuser1:rnst123@ds249092.mlab.com:49092/ranasteel', {
-    useNewUrlParser: true,
-    keepAlive: true
- }) */
-}
-else {
-  mongoose.connect(`mongodb://${dbuser}:${dbuserpwd}@ds249092.mlab.com:49092/ranasteel`, {
-   useNewUrlParser: true,
-   keepAlive: true
-  })
-}
+mongoose.connection.on('error', function (error) {
+  console.error('Database connection error:', error);
+});
 
-
-
-      mongoose.connection.on('error', function(error) {
-        console.error('Database connection error:', error);
-      });
-      
-      mongoose.connection.once('open', function() {
-        console.log('Database connected');
-      });
+mongoose.connection.once('open', function () {
+  console.log('Database connected');
+});
 
 
 const path = require('path');
@@ -48,19 +37,19 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json())
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 })
 
 
 
-app.use( (req, res, next) => {
-    console.log(`${new Date().toString()} => ${req.originalUrl}`)
-    //res.send('')
-    next()
+app.use((req, res, next) => {
+  console.log(`${new Date().toString()} => ${req.originalUrl}`)
+  //res.send('')
+  next()
 
 });
 
@@ -79,18 +68,18 @@ app.use(express.static('public'));
 
 //Handler for 404 - Page not found
 
-app.use( (req, res, next) => {
-    res.sendStatus(404).send("we lost you")
+app.use((req, res, next) => {
+  res.sendStatus(404).send("we lost you")
 });
 
 //Handler for 500 - Internal server error 
 
-app.use( (err, req, res, next) => {
-    console.error(err.stack)
-    res.sendFile(path.join(__dirname, '../public/500.html'))
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.sendFile(path.join(__dirname, '../public/500.html'))
 });
 
 
 
-const PORT = process.env.PORT || 3500 ;
+const PORT = process.env.PORT || 3500;
 app.listen(PORT, () => console.info(`Server has started on port ${PORT}`));
