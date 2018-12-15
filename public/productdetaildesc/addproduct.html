@@ -114,33 +114,7 @@
         </div>
      </div>
      <script>
-         function setOptionList(){
-             $.ajax({
-                url: "/api/products",
-                headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-                    'Content-Type':'application/json'
-                },
-                success: function(data){
-                    var htmlData = ['<option value="-1">Select Option</option>']
-                    for(var product of data){
-                        let {productCode} = product;
-                        htmlData.push( `<option value=${productCode}> ${productCode} </option>`);
-                    }
-                    setTimeout(function(){ 
-                        var html = htmlData.join(',');
-                        $('#productDesCode').html(html).removeAttr('disabled');
-                        
-                    }, 1000)
-                },
-                error: function(err){
-                    console.log(err);
-                },
-                done: function(){
-                    console.log("Operation successfully done")    
-                }
-            })
-         }
+         
 
          function onProductChange(obj){
             var optionValueLen = $(obj).find('option:selected').length;
@@ -152,7 +126,7 @@
             }
          }
          window.addEventListener("load", function(){
-            setOptionList();
+            setOptionList('#productDesCode');
          })
      </script>
 </body>

@@ -5,6 +5,19 @@ function addingFormData(event, formType){
         url = undefined,
         cForm = undefined;
 
+        if(formType == "productdetail"){
+            cForm =  document.addProductDetailForm;
+
+            formData = {
+                productDesCode: $('#productDtlCode').val(),
+                productDtlImage: cForm.productDtlImage.value,
+                productDtlGallaryImages: (cForm.productDtlGallaryImages.value).split('#'),
+                productDtlDiscriptionMsg: (cForm.productDtlDiscriptionMsg.value).split('#')
+            }
+            url = '/api/productdetail';
+            console.log(formData);
+        }
+
         if(formType == "productdesc"){
             cForm =  document.addProductDescFormData;
 
@@ -130,6 +143,20 @@ function editFormData(event, formType){
         formData = undefined,
         urlRedirection= undefined;
 
+        if(formType == 'productdetail'){
+
+            const cForm =  document.editProductDetailFormData;
+            
+            formData = {
+                productDtlCode: cForm.productDtlCode.value,
+                productDtlImage: cForm.productDtlImage.value,
+                productDtlDiscriptionMsg: (cForm.productDtlDiscriptionMsg.value).split('#'),
+                productDtlGallaryImages: (cForm.productDtlGallaryImages.value).split('#')
+                };
+            apiUrl = '/api/productdetail?productDtlId='+urlValue;
+            urlRedirection = '/productdetail'
+        }
+
         if(formType == 'productdesc'){
 
             const cForm =  document.editProductDescFormData;
@@ -233,6 +260,30 @@ function setFormData(formType){
         let url = new URL(window.location.href);
         let [urlKey, urlValue] = url.search.substr(1, ).split('=');
         console.log(urlKey, urlValue);
+
+        if(formType == 'productdetail') {
+            $.ajax({
+                url: "/api/productdetail?productDtlId="+urlValue,
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type':'application/json'
+                },
+                success: function(data){
+                    let cForm = document.editProductDetailFormData;
+                    let {productDtlCode, productDtlImage, productDtlDiscriptionMsg, productDtlGallaryImages} = data;
+                    cForm.productDtlCode.value = productDtlCode;
+                    cForm.productDtlImage.value = productDtlImage;
+                    cForm.productDtlDiscriptionMsg.value = productDtlDiscriptionMsg.join('#');
+                    cForm.productDtlGallaryImages.value = productDtlGallaryImages.join('#');
+
+                    $('input, textarea').removeAttr('disabled');    
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            })
+        }
+
         if(formType == 'productDesc') {
             $.ajax({
                 url: "/api/productdetaildesc?productDesId="+urlValue,
@@ -300,7 +351,6 @@ function setFormData(formType){
                 success: function(data){
                     let cform = document.editProductFormData;
                     let {productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = data;
-                        console.log(productAvaiblityLoation);    
                     $("[name=productAvaiblityLoation]").val(productAvaiblityLoation);
                         cform.productCode.value = productCode; 
                         cform.productPrice.value = productPrice; 
@@ -338,3 +388,43 @@ function setFormData(formType){
 
         
     }
+
+
+function setOptionList(elementId){
+    $.ajax({
+        url: "/api/products",
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+            'Content-Type':'application/json'
+        },
+        success: function(data){
+            var htmlData = ['<option value="-1">Select Option</option>']
+            for(var product of data){
+                let {productCode} = product;
+                htmlData.push( `<option value=${productCode}> ${productCode} </option>`);
+            }
+            setTimeout(function(){ 
+                var html = htmlData.join(',');
+                $(elementId).html(html).removeAttr('disabled');
+                
+            }, 1000)
+        },
+        error: function(err){
+            console.log(err);
+        },
+        done: function(){
+            console.log("Operation successfully done")    
+        }
+    })
+}
+
+
+function checklogin(){
+    let checklogin = sessionStorage.getItem("tokenkey");
+    if(checklogin == undefined){
+        window.location.href = "/";
+    }
+ }
+window.addEventListener("load", function(){
+    checklogin()
+});

@@ -14,12 +14,15 @@ tbody td, thead th {
     float: left;
 }
 .success td {
-    height: 51px;
+    min-height: 51px;
 }
 
 .customerTableWrap {
     max-height: 200px;
     overflow-y:auto;
+}
+.tableProductDetails .customerTableWrap {
+    max-height: 400px;
 }
 .margin-bottom-40{
     margin-bottom: 40px;
@@ -114,3 +117,17 @@ tbody td, thead th {
     width: 9%;
 }
 
+.tableProductDetails>.table>tbody>tr.success>td {
+    background-color: transparent;
+}
+
+.tableProductDetails table tr th, .tableProductDetails table tr td {
+    width: 20%;
+    background-color: none;
+}
+.tableProductDetails table tr th:last-child, .tableProductDetails table tr td:last-child,.tableProductDetails table tr th:first-child, .tableProductDetails table tr td:first-child {
+    width: 10%;
+}
+.tableProductDetails table tr th:nth-child(3), .tableProductDetails table tr td:nth-child(3){
+    width:40%;
+}

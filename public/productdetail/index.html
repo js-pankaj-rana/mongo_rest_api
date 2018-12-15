@@ -14,11 +14,11 @@
 </head>
 <body>
     <div class="jumbotron">
-       <div class="container">
+       <div class="container-fluid">
            <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
        </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
             <div class="text-left margin-bottom-40">
                 <a href="/productdetail/addproduct.html" class="btn btn-lg btn-success">Add New Product</a>
             </div> 
@@ -32,20 +32,18 @@
                         <div class="dot" style="--i: 4;"></div>
                     </div>
                </div> 
-            <div class="tableProduct" style="display: none;">
+            <div class="tableProductDetails" style="display: none;">
                 <table class="table">
                     <thead>
                         <tr class="danger">
                         <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>Product Avaiblity Loation</th>
-                        <th>Product Price</th>
-                        <th>Product Stocks</th>
-                        <th>Product Visiblity</th>
-                        <th>Edit Product</th>
+                        <th>Product Image</th>
+                        <th>Discription Msg</th>
+                        <th>Gallary</th>
+                        <th>Edit</th>
                         </tr>
                     </thead>
-                    <tbody id="customerList" class="customerTableWrap">
+                    <tbody id="productDetail" class="customerTableWrap">
                     </tbody>
                 </table>
             </div>
@@ -60,7 +58,7 @@
         $(window).on('load', function(){
             // var htmlData = undefined;
             $.ajax({
-                url: "/api/productdetaildescs",
+                url: "/api/productdetails",
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
                     'Content-Type':'application/json'
@@ -69,12 +67,21 @@
                     console.log(data);
                     var htmlData = []
                     for(var product of data){
-                        let {productId, productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = product;
-                        htmlData.push( '<tr class="success"><td>'+ productCode + '</td> <td>' + productName + '</td> <td>' + productAvaiblityLoation + '</td> <td>' + productPrice + '</td> <td>' + productStockNum + '</td><td>' + productVisiblity + '</td> <td class="text-center"><a href="/product/editProduct.html?productId='+productId+'" class="btn btn-info">Edit</a></td></tr>');
+                        let {productDtlGallaryImages, productDtlDiscriptionMsg, productDtlCode, productDtlImage, productDtlId} = product;
+                        htmlData.push( '<tr class="success"><td>'+ productDtlCode + '</td> <td>' + productDtlImage + '</td> <td>' + 
+                        
+                            productDtlDiscriptionMsg.map( para => {
+                                return `<p>${para}</p>`; 
+                            })
+                         + '</td> <td><ul>' +
+                            productDtlGallaryImages.map( image => {
+                                return `<li>${image}</li>`; 
+                            })
+                             + '</ul></td> <td class="text-center"><a href="/productdetail/editProduct.html?productDtlId='+productDtlId+'" class="btn btn-info">Edit</a></td></tr>');
                     }
                     setTimeout(function(){ 
                         var html = htmlData.join(',');
-                        $('#customerList').html(html);
+                        $('#productDetail').html(html);
                         $('.loader').fadeOut('fast').next().fadeIn(1000);
                     }, 1000)
                 },
