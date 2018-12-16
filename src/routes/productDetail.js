@@ -35,11 +35,11 @@ router.post('/productdetail', verifyToken, (req, res) => {
 
 // GET
 router.get('/productdetail', (req, res) => {
-  if (!req.query.productDtlCode) {
-    return res.status(400).send('Missing URL parameter: productDtlCode')
+  if (!req.query.productDtlId) {
+    return res.status(400).send('Missing URL parameter: productDtlId')
   }
   ProductDetail.findOne({
-      productDtlCode: req.query.productDtlCode
+    productDtlId: req.query.productDtlId
     })
     .then(doc => {
       res.json(doc)
@@ -64,8 +64,8 @@ router.get('/productdetails', (req, res) => {
 
 // UPDATE
 router.put('/productdetail', verifyToken, (req, res) => {
-  if (!req.query.productDtlCode) {
-    return res.status(400).send('Missing URL parameter: productDtlCode')
+  if (!req.query.productDtlId) {
+    return res.status(400).send('Missing URL parameter: productDtlId')
   }
 
   jwt.verify(req.token, secretkey, (err, authData) => {
@@ -73,7 +73,7 @@ router.put('/productdetail', verifyToken, (req, res) => {
       res.sendStatus(403);
     } else {
       ProductDetail.findOneAndUpdate({
-          productDtlCode: req.query.productDtlCode
+          productDtlId: req.query.productDtlId
         }, req.body, {
           new: true
         })
@@ -89,15 +89,15 @@ router.put('/productdetail', verifyToken, (req, res) => {
 
 // DELETE
 router.delete('/productdetail', verifyToken, (req, res) => {
-  if (!req.query.productDtlCode) {
-    return res.status(400).send('Missing URL parameter: productDtlCode')
+  if (!req.query.productDtlId) {
+    return res.status(400).send('Missing URL parameter: productDtlId')
   }
   jwt.verify(req.token, secretkey, (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
       ProductDetail.findOneAndRemove({
-          productDtlCode: req.query.productDtlCode
+          productDtlId: req.query.productDtlId
         })
         .then(doc => {
           res.json(doc)

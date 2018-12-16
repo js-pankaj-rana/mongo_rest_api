@@ -62,7 +62,10 @@
      </div>
 
 <script>
-    window.addEventListener('load', setFormData('contactus'));
+    window.addEventListener("load", function(){
+        checkLogin();
+        setFormData('contactus')
+     })
 </script>
 </body>
 </html>

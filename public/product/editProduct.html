@@ -94,7 +94,10 @@
         </div>
      </div>
 <script>
-    window.addEventListener('load', setFormData('product'));
+    window.addEventListener('load', function(){
+        checklogin()
+        setFormData('product')
+    });
 </script>
 </body>
 </html>

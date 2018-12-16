@@ -68,15 +68,18 @@
                     var htmlData = []
                     for(var product of data){
                         let {productDtlGallaryImages, productDtlDiscriptionMsg, productDtlCode, productDtlImage, productDtlId} = product;
-                        htmlData.push( '<tr class="success"><td>'+ productDtlCode + '</td> <td>' + productDtlImage + '</td> <td>' + 
-                        
-                            productDtlDiscriptionMsg.map( para => {
+
+                        let allpara = productDtlDiscriptionMsg.map( para => {
                                 return `<p>${para}</p>`; 
-                            })
-                         + '</td> <td><ul>' +
-                            productDtlGallaryImages.map( image => {
+                            });
+                        let imageList = productDtlGallaryImages.map( image => {
                                 return `<li>${image}</li>`; 
-                            })
+                            })    
+
+                        htmlData.push( '<tr class="success"><td>'+ productDtlCode + '</td> <td>' + productDtlImage + '</td> <td>' + 
+                            allpara.join(' ')   
+                         + '</td> <td><ul class="list-unstyled">' +
+                            imageList.join(' ')
                              + '</ul></td> <td class="text-center"><a href="/productdetail/editProduct.html?productDtlId='+productDtlId+'" class="btn btn-info">Edit</a></td></tr>');
                     }
                     setTimeout(function(){ 

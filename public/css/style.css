@@ -22,7 +22,7 @@ tbody td, thead th {
     overflow-y:auto;
 }
 .tableProductDetails .customerTableWrap {
-    max-height: 400px;
+    max-height: none;
 }
 .margin-bottom-40{
     margin-bottom: 40px;
