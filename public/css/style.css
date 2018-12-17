@@ -18,9 +18,14 @@ tbody td, thead th {
 }
 
 .customerTableWrap {
-    max-height: 200px;
+    max-height: 100vh;
     overflow-y:auto;
 }
+.customerContactTableWrap {
+    max-height: 150vh;
+    overflow-y:auto;
+}
+
 .tableProductDetails .customerTableWrap {
     max-height: none;
 }
