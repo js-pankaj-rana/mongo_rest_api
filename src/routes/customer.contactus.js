@@ -70,7 +70,7 @@ router.get('/customercontacts/all', verifyToken, (req, res) => {
 
   
 // UPDATE
-router.put('/customer', verifyToken, (req, res) => {
+router.put('/customercontact', verifyToken, (req, res) => {
   if(!req.query.customerContactId) {
     return res.status(400).send('Missing URL parameter: customerContactId')
   }

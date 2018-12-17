@@ -18,7 +18,7 @@
            <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
        </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div>
                <div class="loader">
                     <div class="a" style="--n: 5;">
@@ -65,7 +65,7 @@
                     var htmlData = []
                     for(var contactUsItem of data){
                         let {contactFormId, contactUserName, contactUserEmail, contactUserMessage, contactCreatedAt} = contactUsItem;
-                        htmlData.push( '<tr class="success"><td>'+ contactUserName + '</td> <td>' + contactUserEmail + '</td> <td>' + contactUserMessage + '</td> <td>' + contactCreatedAt + '</td><td class="text-center"><a href="/contactus/editContactUs.html?contactFormId='+contactFormId+'" class="btn btn-info">Edit</a></td></tr>');
+                        htmlData.push( '<tr><td>'+ contactUserName + '</td> <td>' + contactUserEmail + '</td> <td>' + contactUserMessage + '</td> <td>' + contactCreatedAt + '</td><td class="text-center"><a href="/contactus/editContactUs.html?contactFormId='+contactFormId+'" class="btn btn-info">Edit</a></td></tr>');
                     }
                     setTimeout(function(){ 
                         var html = htmlData.join(',');
