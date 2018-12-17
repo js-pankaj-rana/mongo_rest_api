@@ -353,7 +353,9 @@ function setFormData(formType) {
                      cform.productVisiblity.value = productVisiblity; 
                      cform.productStockNum.value = productStockNum; 
                      cform.productName.value = productName; 
-                 $('input, select').removeAttr('disabled');    
+                 $('input, select').removeAttr('disabled'); 
+                 $('#productCode').attr('disabled','disabled');
+                   
              },
              error: function(err){
                  console.log(err);
