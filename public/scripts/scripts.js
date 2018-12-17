@@ -336,7 +336,7 @@ function setFormData(formType) {
         })
     }
 
-    /*  if(formType == 'product') {
+      if(formType == 'product') {
          $.ajax({
              url: "/api/product?productId="+urlValue,
              headers: {
@@ -359,7 +359,7 @@ function setFormData(formType) {
                  console.log(err);
              }
          })
-     } */
+     }
 
     if (formType == 'contactus') {
         $.ajax({
