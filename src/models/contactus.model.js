@@ -16,8 +16,14 @@ const ContactUsFormSchema = new mongoose.Schema({
     contactUserMessage: {
         type: String
     },
-    contactCreatedAt: Date,
-    contactStartDate: Date
+    contactCreatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    contactStartDate: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('ContactUsForm', ContactUsFormSchema);
