@@ -54,12 +54,12 @@ function addingFormData(event, formType) {
     if (formType == "product") {
         cForm = document.addProductForm;
         formData = {
-            productCode,
-            productName,
-            "productAvaiblityLoation": $('#productAvaiblityLoation').val(),
-            productPrice,
-            productStockNum,
-            productVisiblity
+            productCode: cForm.productCode.value,
+            productName: cForm.productName.value,
+            productAvaiblityLoation: $('#productAvaiblityLoation').val(),
+            productPrice: cForm.productPrice.value,
+            productStockNum: cForm.productStockNum.value,
+            productVisiblity: cForm.productVisiblity.value
         };
         url = '/api/product';
     }
@@ -309,6 +309,7 @@ function setFormData(formType) {
 
 
     if (formType == 'customer') {
+        
         $.ajax({
             url: "/api/customer?customerId=" + urlValue,
             headers: {
