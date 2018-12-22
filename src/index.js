@@ -8,6 +8,7 @@ const customerContactUsRoute = require('./routes/customer.contactus');
 const product = require('./routes/product');
 const productDetail = require('./routes/productDetail');
 const productDescription = require('./routes/productDescription');
+const bnrUsers = require('./routes/bnrusers');
 
 const adminModel = require('./routes/admin');
 const {
@@ -62,6 +63,7 @@ app.use('/api', product);
 app.use('/api', contactUsFormRoute);
 app.use('/api', adminModel);
 app.use('/api', productDescription);
+app.use('/api', bnrUsers);
 
 // app.use('/api', customerRoute);
 app.use(express.static('public'));
