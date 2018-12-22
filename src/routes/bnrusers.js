@@ -34,7 +34,7 @@ const secretkey = "e93b7767-18d4-485a-80bb-ccfcce5fd968";
       res.status(500).json(err)
     })
 }) 
-
+/* 
 router.get('/user', (req, res) => {
   UserRegistration.findOne({userId: req.query.userId})
   .then(doc => {
@@ -52,13 +52,12 @@ router.get('/user', (req, res) => {
   .catch(err => {
     res.status(500).json(err)
   })
-})
+}) */
 // GET
 router.get('/user', (req, res) => {
    if(!req.query.userEmail && !req.query.userPassword) {
       return res.status(400).send('Missing URL parameter: userEmail and userPassword')
     } 
-  console.log(req.query.userEmail)
   UserRegistration.findOne({ $and: [
       {userEmail: req.query.userEmail},
       {userPassword: req.query.userPassword}
@@ -88,7 +87,7 @@ router.get('/user', (req, res) => {
     })
 })
 
-// GET ALL
+/* // GET ALL
 router.get('/users', (req, res) => {
     UserRegistration.find()
       .then(doc => {
@@ -98,7 +97,7 @@ router.get('/users', (req, res) => {
         res.status(500).json(err)
       })
   })
-  
+   */
   
 // UPDATE
  router.put('/user', (req, res) => {
