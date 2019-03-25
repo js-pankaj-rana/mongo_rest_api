@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BN & Rana Almirahs (P) Ltd.</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    
+    <section class="print" style="max-width:600px; margin:0 auto;">
+            <h3 class="center" style="padding:10px; ">Tax-Invoice</h3>    
+        <div class="bill-header">
+            <div class="logo">
+                <div class="logo-wraper">
+                    <img src="images/logo_black.JPG" alt="images">
+                </div>
+
+                <div class="bill-number">
+                    Bill Number: <strong>123101</strong>
+                </div>
+                <div class="bill-date">
+                    Bill Date: <span>19-March-2019</span>
+                </div>
+                <div class="order-date">
+                        Order Date: <span>19-March-2019</span>
+                    </div>
+                <div class="gst-number">
+                        GSTIN: 20AAHCB78300R2ZC
+                        <span style="width:20px; display: inline-block"></span>PAN: <span class="pan">AAHCB78300R</span>
+                </div>
+            </div>
+            <div class="comp-details" style="margin-top:10px;">
+                <h4>Registerd Office: </h4>
+                <address style="font-style:normal; margin-bottom:10px;">
+                    <strong>BN & Rana Almirahs (P) Ltd.</strong><br/>
+                    Holding No. 675A, Ward No. 16<br/> Argaghat Road, Giridih<br/>Jharkhand
+                </address>
+            </div>
+            
+        </div>
+        <hr />
+        <div class="prescription-detail">
+            <h4>Customer details</h4>
+            <div class="customer-detail">
+                <div class="customer-name">Name: Raju Sharma</div>
+                <div class="customer-address">Address: Rajdhanwar, Giridih</div>
+                <div class="customer-Mobile">Mobile: 9120312912</div>
+                <div class="customer-email">Email id: rajesh@gmail.com</div>
+                <div class="customer-gstin">GSTIN: <span class="gst">20AAHCB78300R2ZC</span> </div>
+            </div>
+            <hr />
+            <div class="product-details">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Gross Amonut</th>
+                            <th>Discount</th>
+                            <th>Advance</th>
+                            <th>Taxable Value</th>
+                            <th>IGST</th>
+                            <th>SGST</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Normal Almirah, Product Code: BNRALM0001</td>
+                            <td>Iron Almirah, HSN Code: 94036000</td>
+                            <td>1</td>
+                            <td>9099.00</td>
+                            <td>-00</td>
+                            <td>00</td>
+                            <td>7461.18</td>
+                            <td>818.91</td>   
+                            <td>818.91</td>
+                            <td>9099.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="border-top:2px solid #333; border-bottom:2px solid #333;">Total Amount</td>
+                            <td colspan="3" style="border-top:2px solid #333; border-bottom:2px solid #333;">10736.82</td>
+                        </tr>
+                        <tr><td colspan="9" style="padding-top:20px">
+                            <div>Disclaimer</div>
+                            <p>The goods sold are intended for end user consumption and not for resale.</p>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr><td colspan="10"><h4>Authorize Signature:</h4></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button onclick="print()">Print</button>
+    </section>
+</body>
+
+</html>
