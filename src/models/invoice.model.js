@@ -2,45 +2,6 @@ const mongoose = require('mongoose');
 const uuid = require('uuid');
 
 
-
-const product = new mongoose.Schema({
-    productName: {
-        type: String
-    },
-    productDescription: {
-        type: String
-    },
-    Qty: {
-        type: Number
-    },
-    grossAmonut: {
-        type: Number,
-        default: 00
-    },
-    discount: {
-        type: Number,
-        default: -00
-    },
-    advance: {
-        type: Number,
-        default: -00
-    },
-    taxableValue: {
-        type: Number,
-        default: -00
-    },
-    igst: {
-        type: Number,
-    },
-    sgst: {
-        type: Number,
-    },
-    cgst: {
-        type: Number,
-    }
-})
-
-
 const sellInvoice = new mongoose.Schema({
     invoiceId: {
         type: String,
@@ -77,7 +38,9 @@ const sellInvoice = new mongoose.Schema({
     invoiceCreatedAt: {
         type: String
     },
-    productDetail: [product]
+    productDetails: {
+        type: Array
+    }
 })
 
 module.exports = mongoose.model('SellInvoice', sellInvoice);

@@ -13,25 +13,46 @@
 
 </head>
 <body>
+    <div class="overlay js-close-popup"></div>
+    
+    <div class="product-list">
+            <form>
+                    <div class="form-group">
+                        <select class="custom-select" id="productItems">
+                            <option value="-1" selected >--Select-Product</option>
+                        </select>
+                    </div>
+                    <div class="list-product">
+                        <ul class="list-unstyle">
+                            <li><div class="item"></div><div class="count"><span>0</span> <span class="plus">Add Count</span><span class="minus">Minus Count</span></div></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default js-close-popup" >Close</button>
+                        <button type="button" class="btn btn-default js-add-product">Add product</button>
+                    </div>
+            </form>
+    </div>
+
     <div class="jumbotron">
        <div class="container">
-           <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2>
+           <!-- <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2> -->
        </div>
     </div>
     <div class="container">
-            <div class="text-left margin-bottom-40">
-                <a href="/product/addproduct.html" class="btn btn-lg btn-success">Generate Invoice</a>
+        <div class="text-left margin-bottom-40">
+            <a href="/product/addproduct.html" class="btn btn-lg btn-success">Generate Invoice</a>
+        </div> 
+    <div>
+            <div class="loader" style="display: none;">
+                <div class="a" style="--n: 5;">
+                    <div class="dot" style="--i: 0;"></div>
+                    <div class="dot" style="--i: 1;"></div>
+                    <div class="dot" style="--i: 2;"></div>
+                    <div class="dot" style="--i: 3;"></div>
+                    <div class="dot" style="--i: 4;"></div>
+                </div>
             </div> 
-        <div >
-               <div class="loader" style="display: none;">
-                    <div class="a" style="--n: 5;">
-                        <div class="dot" style="--i: 0;"></div>
-                        <div class="dot" style="--i: 1;"></div>
-                        <div class="dot" style="--i: 2;"></div>
-                        <div class="dot" style="--i: 3;"></div>
-                        <div class="dot" style="--i: 4;"></div>
-                    </div>
-               </div> 
             <div class="invoiceForm" style="display: ;">
                 <form>
                     <div class="form-group">
@@ -54,48 +75,134 @@
                         <label for="customerGstin">Customer GSTIN:</label>
                         <input type="text" class="form-control" id="customerGstin">
                       </div>
-                      
-                    
+                    <button type="button" class="btn btn-default js-fetch-product">Add product</button>
                     <button type="submit" class="btn btn-default">Submit</button>
                   </form>
+                  <div>
+                      <table class="table-regular">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Gross Amonut</th>
+                                    <th>Discount</th>
+                                    <th>Advance</th>
+                                    <th>Taxable Value</th>
+                                    <th>IGST</th>
+                                    <th>SGST</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prd">
+
+                            </tbody>
+                      </table>
+                  </div>
             </div> 
         </div>
     </div>
   
     <div class="margin-top-40">
             <div class="container">
-                <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p>
+                <!-- <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p> -->
             </div>
          </div>
     <script type="application/javascript">
-        // $(window).on('load', function(){
-        //     // var htmlData = undefined;
-        //     $.ajax({
-        //         url: "/api/products",
-        //         headers: {
-        //             'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-        //             'Content-Type':'application/json'
-        //         },
-        //         success: function(data){
-        //             console.log(data);
-        //             var htmlData = []
-        //             for(var product of data){
-        //                 let {productId, productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = product;
-        //                 htmlData.push( '<tr class="success"><td>'+ productCode + '</td> <td>' + productName + '</td> <td>' + productAvaiblityLoation + '</td> <td>' + productPrice + '</td> <td>' + productStockNum + '</td><td>' + productVisiblity + '</td> <td class="text-center"><a href="/product/editProduct.html?productId='+productId+'" class="btn btn-info">Edit</a></td></tr>');
-        //             }
-        //             setTimeout(function(){ 
-        //                 var html = htmlData.join(',');
-        //                 $('#customerList').html(html);
-        //                 $('.loader').fadeOut('fast').next().fadeIn(1000);
-        //             }, 1000)
-        //         },
-        //         done: function(){
-        //             console.log('Hi')
-        //             // $('#customerList').html(htmlData.join(' '));
-        //         }
-        //     })
+
+        var listallproduct = [];
+
+        $('.js-fetch-product').on('click', function(){
+            $('.overlay').fadeIn(800);
+            $('.product-list').fadeIn(900);
+             $.ajax({
+                url: "/api/products",
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type':'application/json'
+                },
+                success: function(data){
+                    console.log(data);
+                    var htmlData = []
+                    for(var product of data){
+                        let {productId, productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = product;
+                        // let strinData = JSON.stringify(product)
+                        $("<option value="+productCode+">"+ productCode +":"+ productName +"</option>").appendTo("#productItems");
+
+                        listallproduct = data;
+                    }
+                },
+                done: function(){
+                    console.log('Hi')
+                    // $('#customerList').html(htmlData.join(' '));
+                }
+            })
         //     // checklogin()
-        // })
+         })
+
+         
+         var productCollection = [];
+
+
+         $('#productItems').on('change', function(e){
+            var qtny = prompt('plz add qty', '1')
+            var productCode = $(this).val();
+            var newset = getUniqueProduct(listallproduct, productCode, qtny)
+            
+
+            productCollection.push(...newset)
+         })
+
+        //  productCollection.push()
+        $('.js-add-product').on('click', function(){
+
+            let html = [];
+            
+            productCollection.map( item => {
+                debugger;
+                html.push(`<tr><td>Product Name: ${item.productName}<br/>Product Code: ${item.productCode} </td>
+                            <td>Iron Almirah,<br/>HSN Code: 94036000</td>
+                            <td>${item.qty}</td>
+                            <td>${item.productPrice}</td>
+                            <td>${ item.productDiscount}</td>
+                            <td>${ item.productAdvance}</td>
+                            <td>${ item.taxableAmount}</td>
+                            <td>${ item.igst}</td>   
+                            <td>${ item.sgst}</td>
+                            <td>${ item.totalAmount }</td>
+                        </tr>`)
+                    })
+
+                    $('#prd').html(html.join(','));
+
+        })
+        $('.js-close-popup').on('click', function(){
+            $('.overlay').fadeOut(800);
+            $('.product-list').fadeOut(900);
+        })
+
+
+        function getUniqueProduct(array, prdcode, qty) {
+            var removeItems = ['productAvaiblityLoation', 'productEntryDate', 'productId', 'productStockNum', 'productVisiblity', '__v', '_id']
+                let ids = new Set();
+                return array.filter((item) => {
+                    if(item.productCode === prdcode){
+                        item.productPrice = item.productPrice.toFixed(2);
+                        item.totalTax = (item.productPrice * 0.18).toFixed(2);
+                        removeItems.map(val => delete item[val]);
+                        item.taxableAmount = parseInt(item.productPrice - item.totalTax);
+                        item.igst = (item.productPrice * 0.09).toFixed(2);
+                        item.sgst = (item.productPrice * 0.09).toFixed(2);
+                        item.qty = qty;
+                        item.productDiscount = item.productDiscount || 0;
+                        item.productAdvance = item.productAdvance || 0;
+                        item.totalAmount =  ((item.taxableAmount + parseInt(item.sgst) + parseInt(item.igst)) - (item.productDiscount + item.productAdvance) * parseInt(item.qty) );
+                        ids.add(item);
+                        return true;
+                    }
+                    return false
+                })
+            }
     </script>
 </body>
 </html>
