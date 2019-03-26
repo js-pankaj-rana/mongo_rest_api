@@ -176,3 +176,13 @@ table.table-regular tbody td, table.table-regular thead th {
     float: none;
     display: table-cell;
 }
+
+.userCollection{
+    position: absolute;
+    width: 50vw;
+    margin: 0 auto;
+    left: 25vw;
+    top: 25vh;
+    z-index: 2;
+    background: #ffffff;
+}

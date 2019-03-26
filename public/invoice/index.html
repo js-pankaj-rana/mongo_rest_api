@@ -14,7 +14,20 @@
 </head>
 <body>
     <div class="overlay js-close-popup"></div>
-    
+    <div class="userCollection" >
+      <form>
+        <div class="form-group">
+          <select class="custom-select" id="usersListOptions">
+              <option value="-1" selected >--Select-Customer</option>
+          </select>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-default js-close-popup" >Close</button>
+        <button type="button" class="btn btn-default js-add-customer">Add Customer</button>
+    </div>
+      </form>
+    </div>
+
     <div class="product-list">
             <form>
                     <div class="form-group">
@@ -53,28 +66,8 @@
                     <div class="dot" style="--i: 4;"></div>
                 </div>
             </div> 
-            <div class="invoiceForm" style="display: ;">
+            <div class="invoiceForm" style="display: none ;">
                 <form>
-                    <div class="form-group">
-                      <label for="customerName">Customer Name:</label>
-                      <input type="text" class="form-control" id="customerName">
-                    </div>
-                    <div class="form-group">
-                      <label for="customerAddress">Customer Add:</label>
-                      <input type="text" class="form-control" id="customerAddress">
-                    </div>
-                    <div class="form-group">
-                        <label for="customerMobile">Mobile:</label>
-                        <input type="tel" class="form-control" id="customerMobile">
-                      </div>
-                      <div class="form-group">
-                        <label for="customerEmail">Email:</label>
-                        <input type="email" class="form-control" id="customerEmail">
-                      </div>
-                      <div class="form-group">
-                        <label for="customerGstin">Customer GSTIN:</label>
-                        <input type="text" class="form-control" id="customerGstin">
-                      </div>
                     <button type="button" class="btn btn-default js-fetch-product">Add product</button>
                     <button type="submit" class="btn btn-default">Submit</button>
                   </form>
@@ -111,6 +104,36 @@
     <script type="application/javascript">
 
         var listallproduct = [];
+
+        $(window).on('load', function(){
+            // var htmlData = undefined;
+            $('.overlay').fadeIn(800);
+            $('.userCollection').show();
+            $.ajax({
+                url: "/api/customers/all",
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type':'application/json'
+                },
+                success: function(data){
+                    console.log(data);
+                    var htmlData = []
+                    for(var customer of data){
+                        let {customerName, customerEmail, customerMobile, customerAddress, customerEnrollement, customerId} = customer;
+                        $('<option value="'+customerId+'">'+ customerName + '::' + customerMobile +'</option>').appendTo('#usersListOptions');
+                    }
+                    setTimeout(function(){ 
+                        var html = htmlData.join(',');
+                        $('#customerList').html(html);
+                        $('.loader').fadeOut('fast').next().fadeIn(1000);
+                    }, 1000)
+                },
+                done: function(){
+                    console.log('Hi')
+                    // $('#customerList').html(htmlData.join(' '));
+                }
+            })
+        })
 
         $('.js-fetch-product').on('click', function(){
             $('.overlay').fadeIn(800);
@@ -152,6 +175,16 @@
 
             productCollection.push(...newset)
          })
+
+         $('#usersListOptions').on('change', function(e){
+            var userId = $(this).val();
+            // var newset = getUniqueProduct(listallproduct, productCode, qtny)
+            
+            alert(userId);
+            // productCollection.push(...newset)
+         })
+         
+
 
         //  productCollection.push()
         $('.js-add-product').on('click', function(){
