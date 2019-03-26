@@ -186,3 +186,28 @@ table.table-regular tbody td, table.table-regular thead th {
     z-index: 2;
     background: #ffffff;
 }
+
+form.billinfo {
+    padding: 20px;
+    font-size: 14px;
+}
+
+
+
+form.billinfo  input[type=date] {
+    border:1px solid #d7d7d7;
+    padding:2px 5px;
+}
+
+form.billinfo select {
+    padding:5px 5px;
+    margin-top:20px;
+    border:1px solid #d7d7d7;
+    display:block;
+    border-radius:2px;
+}
+
+form.billinfo select option:select {
+    color: #000;
+    font-weight:bold;
+}

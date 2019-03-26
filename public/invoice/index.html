@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,51 +13,58 @@
     <title>Home Page || Admin Module</title>
 
 </head>
+
 <body>
     <div class="overlay js-close-popup"></div>
-    <div class="userCollection" >
-      <form>
-        <div class="form-group">
-          <select class="custom-select" id="usersListOptions">
-              <option value="-1" selected >--Select-Customer</option>
-          </select>
-      </div>
-      <div class="form-group">
-        <button type="button" class="btn btn-default js-close-popup" >Close</button>
-        <button type="button" class="btn btn-default js-add-customer">Add Customer</button>
-    </div>
-      </form>
+    <div class="userCollection">
+        <form class="billinfo">
+            <lable for="date">Select Bill Date: </lable><input type="date" placeholder="bill-date" id="date" format="dd/MM/yyyy" /><br/> <br/> 
+            <lable for="ordDate">Select Order Date: </lable><input type="date" placeholder="order-date" format="dd/MM/yyyy" id="ordDate" />
+
+            <div class="form-group">
+                <select class="custom-select" id="usersListOptions">
+                    <option value="-1" selected>--Select-Customer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default js-add-customer">Add Customer</button>
+            </div>
+        </form>
     </div>
 
     <div class="product-list">
-            <form>
-                    <div class="form-group">
-                        <select class="custom-select" id="productItems">
-                            <option value="-1" selected >--Select-Product</option>
-                        </select>
-                    </div>
-                    <div class="list-product">
-                        <ul class="list-unstyle">
-                            <li><div class="item"></div><div class="count"><span>0</span> <span class="plus">Add Count</span><span class="minus">Minus Count</span></div></li>
-                        </ul>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-default js-close-popup" >Close</button>
-                        <button type="button" class="btn btn-default js-add-product">Add product</button>
-                    </div>
-            </form>
+        <form>
+            <div class="form-group">
+                <select class="custom-select" id="productItems">
+                    <option value="-1" selected>--Select-Product</option>
+                </select>
+            </div>
+            <div class="list-product">
+                <ul class="list-unstyle">
+                    <li>
+                        <div class="item"></div>
+                        <div class="count"><span>0</span> <span class="plus">Add Count</span><span class="minus">Minus
+                                Count</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default js-close-popup">Close</button>
+                <button type="button" class="btn btn-default js-add-product">Add product</button>
+            </div>
+        </form>
     </div>
 
     <div class="jumbotron">
-       <div class="container">
-           <!-- <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2> -->
-       </div>
+        <div class="container">
+            <!-- <h2 class="text-center">Welcome to the BN & Rana Almirahs Pvt Ltd.</h2> -->
+        </div>
     </div>
     <div class="container">
         <div class="text-left margin-bottom-40">
             <a href="/product/addproduct.html" class="btn btn-lg btn-success">Generate Invoice</a>
-        </div> 
-    <div>
+        </div>
+        <div>
             <div class="loader" style="display: none;">
                 <div class="a" style="--n: 5;">
                     <div class="dot" style="--i: 0;"></div>
@@ -65,47 +73,115 @@
                     <div class="dot" style="--i: 3;"></div>
                     <div class="dot" style="--i: 4;"></div>
                 </div>
-            </div> 
+            </div>
             <div class="invoiceForm" style="display: none ;">
                 <form>
                     <button type="button" class="btn btn-default js-fetch-product">Add product</button>
                     <button type="submit" class="btn btn-default">Submit</button>
-                  </form>
-                  <div>
-                      <table class="table-regular">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Description</th>
-                                    <th>Qty</th>
-                                    <th>Gross Amonut</th>
-                                    <th>Discount</th>
-                                    <th>Advance</th>
-                                    <th>Taxable Value</th>
-                                    <th>IGST</th>
-                                    <th>SGST</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="prd">
-
-                            </tbody>
-                      </table>
-                  </div>
-            </div> 
+                </form>
+                <div>
+                    
+                </div>
+            </div>
         </div>
     </div>
-  
+
     <div class="margin-top-40">
-            <div class="container">
-                <!-- <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p> -->
+        <div class="container">
+            <!-- <p class="text-center text-small">Copyright &copy; all content are reserved for BN & Rana Almirahs Pvt Ltd.</p> -->
+        </div>
+    </div>
+
+    <section class="print" style="max-width:600px; margin:0 auto;">
+        <h3 class="center" style="padding:10px; ">Tax-Invoice</h3>
+        <div class="bill-header">
+            <div class="logo">
+                <div class="logo-wraper">
+                    <img src="images/logo_black.JPG" alt="images">
+                </div>
+
+                <div class="bill-number">
+                    Bill Number: <strong id="billNum">0</strong>
+                </div>
+                <div class="bill-date">
+                    Bill Date: <span id="billDate">dd-mm-yyyy</span>
+                </div>
+                <div class="order-date">
+                    Order Date: <span id="orderDate">dd-mm-yyyy</span>
+                </div>
+                <div class="gst-number">
+                    GSTIN: 20AAHCB78300R2ZC
+                    <span style="width:20px; display: inline-block"></span>PAN: <span class="pan">AAHCB78300R</span>
+                </div>
             </div>
-         </div>
+            <div class="comp-details" style="margin-top:10px;">
+                <h4>Registerd Office: </h4>
+                <address style="font-style:normal; margin-bottom:10px;">
+                    <strong>BN & Rana Almirahs (P) Ltd.</strong><br />
+                    Holding No. 675A, Ward No. 16<br /> Argaghat Road, Giridih<br />Jharkhand
+                </address>
+            </div>
+
+        </div>
+        <hr />
+        <div class="prescription-detail">
+            <h4>Customer details</h4>
+            <div class="customer-detail" id="customerDetail">
+                <!--  -->
+            </div>
+            <hr />
+            <div class="product-details">
+
+                    
+
+                <table class="table-regular">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>@ Gross Amount</th>
+                            <th>Discount</th>
+                            <th>Advance</th>
+                            <th>Taxable Value</th>
+                            <th>IGST</th>
+                            <th>SGST</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prd">
+                    </tbody>   
+                    <tbody id="prd1">                            
+                        <tr>
+                            <td colspan="7" style="border-top:2px solid #333; border-bottom:2px solid #333;">Total
+                                Amount</td>
+                            <td colspan="3" style="border-top:2px solid #333; border-bottom:2px solid #333;" id="ttlPrc">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" style="padding-top:20px">
+                                <div>Disclaimer</div>
+                                <p>The goods sold are intended for end user consumption and not for resale.</p>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="10">
+                                <h4>Authorize Signature:</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button onclick="print()">Print</button>
+    </section>
+
     <script type="application/javascript">
+        var listallproduct = [],
+            selectedUser;
 
-        var listallproduct = [];
-
-        $(window).on('load', function(){
+        $(window).on('load', function () {
             // var htmlData = undefined;
             $('.overlay').fadeIn(800);
             $('.userCollection').show();
@@ -113,86 +189,128 @@
                 url: "/api/customers/all",
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/json'
                 },
-                success: function(data){
+                success: function (data) {
                     console.log(data);
                     var htmlData = []
-                    for(var customer of data){
-                        let {customerName, customerEmail, customerMobile, customerAddress, customerEnrollement, customerId} = customer;
-                        $('<option value="'+customerId+'">'+ customerName + '::' + customerMobile +'</option>').appendTo('#usersListOptions');
+                    for (var customer of data) {
+                        let {
+                            customerName,
+                            customerEmail,
+                            customerMobile,
+                            customerAddress,
+                            customerEnrollement,
+                            customerId
+                        } = customer;
+                        $('<option value="' + customerId + '" data-cname="'+customerName+'" data-cemail="'+customerEmail+'" data-caddress="'+customerAddress+'" data-cmobile="'+customerMobile+'" >Name: ' + customerName + ' Mobile: ' +
+                            customerMobile + '</option>').appendTo('#usersListOptions');
                     }
-                    setTimeout(function(){ 
+                    setTimeout(function () {
                         var html = htmlData.join(',');
                         $('#customerList').html(html);
                         $('.loader').fadeOut('fast').next().fadeIn(1000);
                     }, 1000)
                 },
-                done: function(){
+                done: function () {
                     console.log('Hi')
                     // $('#customerList').html(htmlData.join(' '));
                 }
             })
         })
 
-        $('.js-fetch-product').on('click', function(){
+        $('.js-fetch-product').on('click', function () {
             $('.overlay').fadeIn(800);
             $('.product-list').fadeIn(900);
-             $.ajax({
+            $.ajax({
                 url: "/api/products",
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/json'
                 },
-                success: function(data){
+                success: function (data) {
                     console.log(data);
                     var htmlData = []
-                    for(var product of data){
-                        let {productId, productVisiblity, productAvaiblityLoation, productCode, productPrice, productStockNum, productName} = product;
+                    for (var product of data) {
+                        let {
+                            productId,
+                            productVisiblity,
+                            productAvaiblityLoation,
+                            productCode,
+                            productPrice,
+                            productStockNum,
+                            productName
+                        } = product;
                         // let strinData = JSON.stringify(product)
-                        $("<option value="+productCode+">"+ productCode +":"+ productName +"</option>").appendTo("#productItems");
-
+                        $("<option value=" + productCode + ">" + productCode + ":" + productName +
+                            "</option>").appendTo("#productItems");
                         listallproduct = data;
                     }
                 },
-                done: function(){
+                done: function () {
                     console.log('Hi')
                     // $('#customerList').html(htmlData.join(' '));
                 }
             })
-        //     // checklogin()
-         })
+            //     // checklogin()
+        })
 
-         
-         var productCollection = [];
+
+        var productCollection = [];
 
 
          $('#productItems').on('change', function(e){
             var qtny = prompt('plz add qty', '1')
             var productCode = $(this).val();
             var newset = getUniqueProduct(listallproduct, productCode, qtny)
-            
+
 
             productCollection.push(...newset)
-         })
+        })
 
-         $('#usersListOptions').on('change', function(e){
+        var customerInfo = '';
+        $('#usersListOptions').on('change', function (e) {
             var userId = $(this).val();
-            // var newset = getUniqueProduct(listallproduct, productCode, qtny)
-            
-            alert(userId);
-            // productCollection.push(...newset)
-         })
-         
 
+            var name = $(this).find('option:selected').data("cname"), add = $(this).find('option:selected').data("caddress"), email = $(this).find('option:selected').data("cemail"), mobile= $(this).find('option:selected').data("cmobile");
+            
+            var html = `
+                <div class="customer-name">Name: ${name}</div>
+                <div class="customer-address">Address: ${add}</div>
+                <div class="customer-Mobile">Mobile: ${mobile}</div>
+                <div class="customer-email">Email id: ${email}</div>
+                <div class="customer-gstin">GSTIN: <span class="gst">NA</span> </div>
+                `
+            // var newset = getUniqueProduct(listallproduct, productCode, qtny)
+            // productCollection.push(...newset)
+            customerInfo = html;
+             
+            
+        })
+
+
+        $('.js-add-customer').on('click', function () {
+            $('#billDate').html($('#date').val());
+            $('#orderDate').html($('#ordDate').val());
+            
+
+            $('#customerDetail').html(customerInfo);
+            $('.userCollection').fadeOut(500);
+            $('.overlay').fadeOut(800);
+           
+        })
 
         //  productCollection.push()
-        $('.js-add-product').on('click', function(){
+
+        var priceTotalAmount = [];
+
+        $('.js-add-product').on('click', function () {
 
             let html = [];
-            
-            productCollection.map( item => {
-                debugger;
+
+            productCollection.map(item => {
+                priceTotalAmount.push( item.totalAmount);
+
                 html.push(`<tr><td>Product Name: ${item.productName}<br/>Product Code: ${item.productCode} </td>
                             <td>Iron Almirah,<br/>HSN Code: 94036000</td>
                             <td>${item.qty}</td>
@@ -204,38 +322,89 @@
                             <td>${ item.sgst}</td>
                             <td>${ item.totalAmount }</td>
                         </tr>`)
-                    })
+            })
 
-                    $('#prd').html(html.join(','));
+            $('#prd').html(html.join(','));
+
+            setTimeout( function(){
+                var price = priceTotalAmount.reduce(getTotalAmount);
+                $('#ttlPrc').html(price);
+            }, 1000)
 
         })
-        $('.js-close-popup').on('click', function(){
+        $('.js-close-popup').on('click', function () {
             $('.overlay').fadeOut(800);
+            
+            if(  $('.userCollection').is(":visible")){
+                $('.userCollection').hide();
+                return;
+            }
             $('.product-list').fadeOut(900);
         })
 
+        
+
+        function getTotalAmount(a, b){
+            return a+b;
+        }
 
         function getUniqueProduct(array, prdcode, qty) {
-            var removeItems = ['productAvaiblityLoation', 'productEntryDate', 'productId', 'productStockNum', 'productVisiblity', '__v', '_id']
-                let ids = new Set();
-                return array.filter((item) => {
-                    if(item.productCode === prdcode){
-                        item.productPrice = item.productPrice.toFixed(2);
-                        item.totalTax = (item.productPrice * 0.18).toFixed(2);
-                        removeItems.map(val => delete item[val]);
-                        item.taxableAmount = parseInt(item.productPrice - item.totalTax);
-                        item.igst = (item.productPrice * 0.09).toFixed(2);
-                        item.sgst = (item.productPrice * 0.09).toFixed(2);
-                        item.qty = qty;
-                        item.productDiscount = item.productDiscount || 0;
-                        item.productAdvance = item.productAdvance || 0;
-                        item.totalAmount =  ((item.taxableAmount + parseInt(item.sgst) + parseInt(item.igst)) - (item.productDiscount + item.productAdvance) * parseInt(item.qty) );
-                        ids.add(item);
-                        return true;
-                    }
-                    return false
-                })
-            }
+            var removeItems = ['productAvaiblityLoation', 'productEntryDate', 'productId', 'productStockNum',
+                'productVisiblity', '__v', '_id'
+            ]
+            let ids = new Set();
+            return array.filter((item) => {
+                if (item.productCode === prdcode) {
+                    item.productPrice = item.productPrice.toFixed(2);
+                    item.totalTax = (item.productPrice * 0.18).toFixed(2);
+                    removeItems.map(val => delete item[val]);
+                    item.taxableAmount = parseFloat(item.productPrice - item.totalTax)  * parseInt(qty);
+                    item.igst = (item.productPrice * 0.09).toFixed(2) * parseInt(qty);
+                    item.sgst = (item.productPrice * 0.09).toFixed(2)  * parseInt(qty);
+                    item.qty = qty;
+                    item.productDiscount = item.productDiscount || 0;
+                    item.productAdvance = item.productAdvance || 0;
+                    item.totalAmount = ((item.taxableAmount + parseFloat(item.sgst) + parseFloat(item.igst)) - (item
+                        .productDiscount + item.productAdvance)) * parseInt(item.qty);
+                    ids.add(item);
+                    return true;
+                }
+                return false
+            })
+        }
     </script>
+    <style>
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size:10px;
+}
+th,td {
+    padding: 5px 3px;
+}
+td:first-child, th:first-child, th:nth-child(2)  {
+    text-align: left;
+}
+
+td:last-child, th:last-child  {
+    text-align: right;
+}
+.logo-wraper {
+    float: right;
+}
+.center {
+    text-align: center;
+}
+@media print {
+    button,  title {
+        display: none;
+    }
+ }
+ </style>
 </body>
+
 </html>
