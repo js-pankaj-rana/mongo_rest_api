@@ -148,15 +148,6 @@ tbody td, thead th {
     z-index: 2;
 }
 
-.product-list{
-    display: none;
-    position: absolute;
-    z-index: 3;
-    width: 50%;
-    margin: 0 auto;
-    background: #ffffff;
-
-}
 .custom-select{
     width: 100%;
     overflow-y: auto;
@@ -210,4 +201,15 @@ form.billinfo select {
 form.billinfo select option:select {
     color: #000;
     font-weight:bold;
+}
+
+.product-list {
+    position: absolute;
+    width: 50vw;
+    top: 25vh;
+    left: 25vw;
+    z-index: 2;
+    background: #ffffff;
+    padding: 20px;
+    display: none;
 }
