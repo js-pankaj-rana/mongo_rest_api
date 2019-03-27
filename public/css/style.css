@@ -213,3 +213,10 @@ form.billinfo select option:select {
     padding: 20px;
     display: none;
 }
+
+@media print {
+
+    button {
+        display: none;
+    }
+}

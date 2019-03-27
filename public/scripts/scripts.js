@@ -5,6 +5,7 @@ function addingFormData(event, formType) {
         url = undefined,
         cForm = undefined;
 
+
     if (formType == "productdetail") {
         cForm = document.addProductDetailForm;
 
@@ -16,6 +17,10 @@ function addingFormData(event, formType) {
         }
         url = '/api/productdetail';
     }
+
+
+    
+
 
     if (formType == "productdesc"){
         cForm = document.addProductDescFormData;
@@ -73,6 +78,17 @@ function addingFormData(event, formType) {
         };
         url = '/api/contactus';
     }
+
+    if (formType == "invoice") {
+        cForm = document.addProductForm;
+
+        formData = JSON.parse(cForm.invoice)
+        
+        url = '/api/invoice';
+    }
+
+
+
 
     if (formData != undefined && url != undefined) {
         $.ajax({

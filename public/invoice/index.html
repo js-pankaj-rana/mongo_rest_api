@@ -160,10 +160,14 @@
                 </table>
             </div>
         </div>
-        <button onclick="print()">Print</button>
+        <button class="btn btn-primary" onclick="saveInvoice()">Save</button>
+        <button class="btn btn-normal" onclick="print()">Print</button>
     </section>
 
     <script type="application/javascript">
+        
+
+
         var listallproduct = [],
             selectedUser;
 
@@ -257,7 +261,7 @@
         var customerInfo = '';
         $('#usersListOptions').on('change', function (e) {
             var userId = $(this).val();
-
+            selectedUser = userId;
             var name = $(this).find('option:selected').data("cname"), add = $(this).find('option:selected').data("caddress"), email = $(this).find('option:selected').data("cemail"), mobile= $(this).find('option:selected').data("cmobile");
             
             var html = `
@@ -361,9 +365,31 @@
                 return false
             })
         }
+
+        function saveInvoice(){
+            var data = {
+                    productDetails: productCollection,
+                    customerUUID: selectedUser,
+                    invoiceDate: $('#date').val(),
+                    orderDate: $('#ordDate').val(),
+                    totalPrice: priceTotalAmount.reduce(getTotalAmount)
+                }
+
+            $('#invoice').val( JSON.stringify(data) )
+                setTimeout(()=> {
+                    $('#invoice').val();
+                    $('#invsub').trigger('click');
+                }, 800)
+            }    
+        
     </script>
 
-    
+    <form onsubmit="addingFormData(event, 'invoice')" name="invoiceForm" >
+        <input type="hidden" id="invoice" value="" name="invoice" />
+        <button type="button" id="invsub">Submit</button>
+    </form>    
+
+
     <style>
     body{
     font-family: Arial, Helvetica, sans-serif;

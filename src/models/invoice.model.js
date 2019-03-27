@@ -12,34 +12,26 @@ const sellInvoice = new mongoose.Schema({
     },
     invoiceNumber: {
       type: Number,
-      default: 0,
       unique: true  
     },
     invoiceDate: {
-        type: Date,
-        default: Date.now()  
+        type: Date
     },
-    customerName: {
+    orderDate: {
+        type: Date
+    },
+    customerUUID: {
         type: String
-    },
-    customerAddress: {
-        type: String
-    },
-    customerMobile: {
-        type: Number
-    },
-    customerEmail: {
-        type: String
-    },
-    customerGstin: {
-        type: String,
-        unique: true
     },
     invoiceCreatedAt: {
-        type: String
+        type: Date,
+        default: Date.now()
     },
     productDetails: {
         type: Array
+    },
+    totalPrice: {
+        type: Number
     }
 })
 
