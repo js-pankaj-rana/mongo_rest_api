@@ -11,18 +11,17 @@
     <script src="../scripts/bootstrap.min.js"></script>
     <script src="../scripts/scripts.js" type="applicatoin/javascript"></script>
     <title>Home Page || Admin Module</title>
-
 </head>
 
 <body>
     <div class="overlay js-close-popup"></div>
     <div class="userCollection">
         <form class="billinfo">
-            <lable for="date">Select Bill Date: </lable><input type="date" placeholder="bill-date" id="date" format="dd/MM/yyyy" /><br/> <br/> 
-            <lable for="ordDate">Select Order Date: </lable><input type="date" placeholder="order-date" format="dd/MM/yyyy" id="ordDate" />
+            <lable for="date">Select Bill Date: </lable><input type="date" placeholder="bill-date" id="date" format="dd/MM/yyyy" required /><br/> <br/> 
+            <lable for="ordDate">Select Order Date: </lable><input type="date" placeholder="order-date" format="dd/MM/yyyy" id="ordDate" required />
 
             <div class="form-group">
-                <select class="custom-select" id="usersListOptions">
+                <select class="custom-select" id="usersListOptions" required>
                     <option value="-1" selected>--Select-Customer</option>
                 </select>
             </div>
@@ -57,9 +56,6 @@
         </div>
     </div>
     <div class="container">
-        <div class="text-left margin-bottom-40">
-            <a href="/product/addproduct.html" class="btn btn-lg btn-success">Generate Invoice</a>
-        </div>
         <div>
             <div class="loader" style="display: none;">
                 <div class="a" style="--n: 5;">
@@ -82,7 +78,7 @@
         </div>
     </div>
 
-    <section class="print" style="max-width:600px; margin:0 auto;">
+    <section class="print" style="max-width:600px; margin:0 auto;" id="invoice">
         <h3 class="center" style="padding:10px; ">Tax-Invoice</h3>
         <div class="bill-header">
             <div class="logo">
@@ -105,7 +101,7 @@
                 </div>
             </div>
             <div class="comp-details" style="margin-top:10px;">
-                <h4>Registerd Office: </h4>
+                <h5><strong>Registerd Office: </strong></h5>
                 <address style="font-style:normal; margin-bottom:10px;">
                     <strong>BN & Rana Almirahs (P) Ltd.</strong><br />
                     Holding No. 675A, Ward No. 16<br /> Argaghat Road, Giridih<br />Jharkhand
@@ -115,7 +111,7 @@
         </div>
         <hr />
         <div class="prescription-detail">
-            <h4>Customer details</h4>
+            <h5><strong>Customer details</strong></h5>
             <div class="customer-detail" id="customerDetail">
                 <!--  -->
             </div>
@@ -157,7 +153,7 @@
                         </tr>
                         <tr>
                             <td colspan="10">
-                                <h4>Authorize Signature:</h4>
+                                <h5><strong>Authorize Signature:</strong></h5>
                             </td>
                         </tr>
                     </tbody>
@@ -274,8 +270,6 @@
             // var newset = getUniqueProduct(listallproduct, productCode, qtny)
             // productCollection.push(...newset)
             customerInfo = html;
-             
-            
         })
 
 
@@ -297,9 +291,12 @@
         $('.js-add-product').on('click', function () {
 
             let html = [];
-
+            var listItem = []
             productCollection.map(item => {
                 priceTotalAmount.push( item.totalAmount);
+                
+                 listItem.push('<li>'+ item.productName +' <span><strong>'+ item.qty +'</strong></span></li>')
+
 
                 html.push(`<tr><td>Product Name: ${item.productName}<br/>Product Code: ${item.productCode} </td>
                             <td>Iron Almirah,<br/>HSN Code: 94036000</td>
@@ -314,7 +311,9 @@
                         </tr>`)
             })
 
-            $('#prd').html(html.join(','));
+            $('#prd').html(html.join(' '));
+
+            $('#listItems').html(listItem.join(' '));
 
             setTimeout( function(){
                 var price = priceTotalAmount.reduce(getTotalAmount);
@@ -363,6 +362,8 @@
             })
         }
     </script>
+
+    
     <style>
     body{
     font-family: Arial, Helvetica, sans-serif;
