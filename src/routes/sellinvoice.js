@@ -7,9 +7,7 @@ const {
   secretkey
 } = require('../key');
 
-
-// Create a new customer
-// POST localhost:3000/customer
+// POST localhost:3500/invoice
 router.post('/invoice', verifyToken, (req, res) => {
   if (!req.body) {
     return res.status(400).send('Request body is missing')
@@ -18,19 +16,36 @@ router.post('/invoice', verifyToken, (req, res) => {
     if (err) {
       res.sendStatus(403);
     } else {
-      console.log(req.body);  
-      const model = new SellInvoice(req.body)
-      model.save()
+
+     SellInvoice.countDocuments({}, (err, count) => {
+       count = ++count;
+
+           if(count < 10){
+            count = `BNR000${count}` 
+          }
+          
+          if((count > 10) && (count < 100)){
+            count = `BNR00${count}`  
+          }
+            
+          if((count > 100) && (count < 1000)){
+            count = `BNR0${count}`
+          }
+       
+        req.body = {...req.body,  invoiceNumber : count}
+
+        const model = new SellInvoice(req.body)
+        model.save()
         .then(doc => {
           if (!doc || doc.length === 0) {
             return res.status(500).send(doc)
           }
-
           res.status(201).send(doc)
         })
         .catch(err => {
           res.status(500).json(err)
         })
+     });
     }
   })
 })

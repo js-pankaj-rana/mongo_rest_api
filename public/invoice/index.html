@@ -374,22 +374,32 @@
                     orderDate: $('#ordDate').val(),
                     totalPrice: priceTotalAmount.reduce(getTotalAmount)
                 }
+            $.ajax({
+                url: "/api/invoice",
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                    'Content-Type': 'application/json'
+                },
+                type:'POST',
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (responseData, textStatus, jqXHR) {
+                    alert('Record save successfully');
+                    console.log("res==> " + responseData, "resultData==>" + textStatus, "jqXHR==>" + jqXHR);
+                },
+                error: function (err) {
+                    console.log("err==>", err.responseText)
+                },
+                done: function () {
+                    console.log("done");
+                }
+        })
+        
 
-            $('#invoice').val( JSON.stringify(data) )
-                setTimeout(()=> {
-                    $('#invoice').val();
-                    $('#invsub').trigger('click');
-                }, 800)
-            }    
+        } 
         
     </script>
-
-    <form onsubmit="addingFormData(event, 'invoice')" name="invoiceForm" >
-        <input type="hidden" id="invoice" value="" name="invoice" />
-        <button type="button" id="invsub">Submit</button>
-    </form>    
-
-
     <style>
     body{
     font-family: Arial, Helvetica, sans-serif;

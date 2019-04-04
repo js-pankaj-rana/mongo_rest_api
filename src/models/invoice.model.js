@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const uuid = require('uuid');
 
-
 const sellInvoice = new mongoose.Schema({
     invoiceId: {
         type: String,
@@ -11,7 +10,7 @@ const sellInvoice = new mongoose.Schema({
         unique: true
     },
     invoiceNumber: {
-      type: Number,
+      type: String,
       unique: true  
     },
     invoiceDate: {
