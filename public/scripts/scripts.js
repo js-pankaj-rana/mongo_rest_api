@@ -356,7 +356,7 @@ function setFormData(formType) {
          $.ajax({
              url: "/api/product?productId="+urlValue,
              headers: {
-                 'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
+                 'Authorization': `Bearer ${sessionStorage.getItem("tokenfetchCustomerkey")}`,
                  'Content-Type':'application/json'
              },
              success: function(data){
@@ -436,6 +436,9 @@ function setOptionList(elementId) {
     })
 }
 
+function hello(){
+    alert('hello')
+}
 
 function checklogin() {
     let checklogin = sessionStorage.getItem("tokenkey");
@@ -443,71 +446,8 @@ function checklogin() {
         window.location.href = "/";
     }
 }
+
+
 window.addEventListener("load", function () {
-    checklogin()
+    checklogin();
 });
-
-
-function fetchCustomer(elementId, appendTargetElement) {
-    $.ajax({
-        url: "/api/customers/all",
-        headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-            'Content-Type': 'application/json'
-        },
-        success: function (data) {
-            console.log(data);
-            var htmlData = []
-            for (var customer of data) {
-                let {
-                    customerName,
-                    customerEmail,
-                    customerMobile,
-                    customerAddress,
-                    customerEnrollement,
-                    customerId
-                } = customer;
-                $('<option value="' + customerId + '" data-cname="' + customerName +
-                    '" data-cemail="' + customerEmail + '" data-caddress="' +
-                    customerAddress + '" data-cmobile="' + customerMobile +
-                    '" >Name: ' + customerName + ' Mobile: ' +
-                    customerMobile + '</option>').appendTo('#'+appendTargetElement);
-            }
-            setTimeout(function () {
-                var html = htmlData.join(',');
-                $('#'+elementId).html(html);
-            }, 1000)
-        }
-    })
-}    
-
-
-function fetchProd(appendTargetElement){
-    var resdata;
-    $.ajax({
-        url: "/api/products",
-        headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem("tokenkey")}`,
-            'Content-Type': 'application/json'
-        },
-        success: function (data) {
-            for (var product of data) {
-                let {
-                    productId,
-                    productVisiblity,
-                    productAvaiblityLoation,
-                    productCode,
-                    productPrice,
-                    productStockNum,
-                    productName
-                } = product;
-                // let strinData = JSON.stringify(product)
-                $("<option value=" + productCode + ">" + productCode + ":" + productName +
-                    "</option>").appendTo("#"+appendTargetElement);
-                  
-            }
-            resdata = data;
-        }
-    })
-    return resdata;
-}
